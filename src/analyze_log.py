@@ -1,4 +1,3 @@
-from calendar import weekday
 import csv
 from src.track_orders import TrackOrders
 
@@ -28,7 +27,7 @@ def saving_data(data_to_save):
 
 
 def analyze_log(path_to_file):
-        if not path_to_file.endswith('csv'):
-            raise FileNotFoundError("No such file or directory: '{}'".format(path_to_file))
-        result = track_restaurant_orders(path_to_file)
-        saving_data(result)
+    if not path_to_file.endswith('csv'):
+        raise FileNotFoundError(f"No such file or directory: '{path_to_file}'")
+    result = track_restaurant_orders(path_to_file)
+    saving_data(result)
