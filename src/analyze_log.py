@@ -2,6 +2,15 @@ import csv
 from collections import Counter
 
 
+def filter_by_customer(customer, order_data):
+    customer_order = [
+        order["order"]
+        for order in order_data
+        if order["customer"] == customer
+    ]
+    return customer_order
+
+
 def get_orders(path_to_file):
     with open(path_to_file, "r") as file:
         keys = ["customer", "order", "weekday"]
@@ -12,22 +21,14 @@ def get_orders(path_to_file):
 
 
 def get_most_ordered_dish(customer, order_data):
-    customer_order = [
-        order["order"]
-        for order in order_data
-        if order["customer"] == customer
-    ]
+    customer_order = filter_by_customer(customer, order_data)
     count = Counter(customer_order)
     frequent = count.most_common(1)[0][0]
     return frequent
 
 
 def get_quantity_by_dish(customer, dish, order_data):
-    customer_order = [
-        order["order"]
-        for order in order_data
-        if order["customer"] == customer
-    ]
+    customer_order = filter_by_customer(customer, order_data)
     count = Counter(customer_order)
     dish_count = count.get(dish)
     return dish_count
@@ -35,11 +36,7 @@ def get_quantity_by_dish(customer, dish, order_data):
 
 def get_dishes_without_orders(customer, order_data):
     menu = {orders["order"] for orders in order_data}
-    customer_order = {
-        order["order"]
-        for order in order_data
-        if order["customer"] == customer
-    }
+    customer_order = filter_by_customer(customer, order_data)
     # https://www.programiz.com/python-programming/methods/set/symmetric_difference
     dish_without_orders = menu.symmetric_difference(customer_order)
     return dish_without_orders
