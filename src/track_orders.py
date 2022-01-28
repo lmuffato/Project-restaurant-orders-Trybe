@@ -48,7 +48,20 @@ class TrackOrders:
         return days_costumer_go.symmetric_difference(days)
 
     def get_busiest_day(self):
-        pass
+        costumers_quantity_per_day = {}
+        for order in self._orders:
+            _person, _dish, day = order
+            if day not in costumers_quantity_per_day:
+                costumers_quantity_per_day[day] = 1
+            else:
+                costumers_quantity_per_day[day] += 1
+        max_value = max(costumers_quantity_per_day.values())
+        max_key = [
+            key
+            for key, value in costumers_quantity_per_day.items()
+            if value == max_value
+        ]
+        return max_key[0]
 
     def get_least_busy_day(self):
         pass
