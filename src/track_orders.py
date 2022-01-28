@@ -31,7 +31,17 @@ class TrackOrders:
         return neverOrdered
 
     def get_days_never_visited_per_costumer(self, costumer):
-        pass
+        frequented_days = set()
+        schedule = set()
+        not_frequented = set()
+        for personName, personOrder, date in self.orders:
+            if personName == costumer:
+                frequented_days.add(date)
+            schedule.add(date)
+        for day in schedule:
+            if day not in frequented_days:
+                not_frequented.add(day)
+        return not_frequented
 
     def get_busiest_day(self):
         pass
