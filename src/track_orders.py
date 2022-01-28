@@ -2,7 +2,7 @@ class TrackOrders:
     def __len__(self):
         pass
 
-    def add_new_order(self, costumer, order, day): """ inicio do projeto """
+    def add_new_order(self, costumer, order, day):
         pass
 
     def get_most_ordered_dish_per_costumer(self, costumer):
