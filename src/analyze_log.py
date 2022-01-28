@@ -77,4 +77,8 @@ def analyze_log(path_to_file):
     )
     results.append(joao_never_requested)
 
-    print(joao_never_requested)
+    joao_never_went = find_difference(
+        [product[2] for product in joao_data], [product[2] for product in data]
+    )
+
+    print(joao_never_went)
