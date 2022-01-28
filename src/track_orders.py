@@ -1,3 +1,5 @@
+
+
 class TrackOrders:
     def __init__(self):
         self.orders = list()
@@ -6,13 +8,23 @@ class TrackOrders:
         return len(self.orders)
 
     def add_new_order(self, costumer, order, day):
-        self.orders.append({"costumer": costumer, "order": order, "day": day})
+        self.orders.append([costumer, order, day])
 
     def get_most_ordered_dish_per_costumer(self, costumer):
         pass
 
     def get_never_ordered_per_costumer(self, costumer):
-        pass
+        personsOrders = set()
+        menu = set()
+        neverOrdered = set()
+        for personName, personOrder, date in self.orders:
+            if personName == costumer:
+                personsOrders.add(personOrder)
+            menu.add(personOrder)
+        for ordered in menu:
+            if ordered not in personsOrders:
+                neverOrdered.add(ordered)
+        return neverOrdered
 
     def get_days_never_visited_per_costumer(self, costumer):
         pass
