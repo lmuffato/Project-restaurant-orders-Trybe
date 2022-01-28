@@ -28,6 +28,12 @@ class InventoryControl:
         for ingredient in self.MINIMUM_INVENTORY.keys():
             self._used_ingredients[ingredient] = 0
 
+    def remove_from_menu(self, ingredient, stock, ingredient_qty):
+        if stock - ingredient_qty == 0:
+            for key, value in self.INGREDIENTS.items():
+                if ingredient in value and key in self._menu:
+                    del self._menu[key]
+
     def add_new_order(self, costumer, order, day):
         self._orders.append([costumer, order, day])
         for ingredient in self.INGREDIENTS[order]:
@@ -35,6 +41,10 @@ class InventoryControl:
 
             ingredient_stock = self.MINIMUM_INVENTORY[ingredient]
             used_ingredient_qty = self._used_ingredients[ingredient]
+
+            self.remove_from_menu(
+                ingredient, ingredient_stock, used_ingredient_qty
+            )
 
             if ingredient_stock - used_ingredient_qty < 0:
                 return False
