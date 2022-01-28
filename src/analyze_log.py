@@ -1,16 +1,17 @@
 import csv
 import os
 
+
 def read(path):
     with open(path) as file:
         reader = csv.reader(file, delimiter=",")
         return [row for row in reader]
 
+
 def get_frequency(my_list):
-    most_frequent = my_list[0] # o mais frequente provisioriamente
+    most_frequent = my_list[0]
     list_count = {}
     foods = set()
-
 
     for food in my_list:
         if food not in list_count:
@@ -22,29 +23,28 @@ def get_frequency(my_list):
             list_count[most_frequent] = list_count[food]
 
         foods.add(food)
-    
+
     return (list_count, most_frequent, foods)
 
 
-def analyze_log(path_to_file):
+def check_path(path_to_file):
     if not path_to_file:
         raise FileNotFoundError("Arquivo inexistente")
 
-
     _, extension = os.path.splitext(path_to_file)
-
 
     if extension != ".csv":
         raise FileNotFoundError("Extensão inválida")
 
 
+def analyze_log(path_to_file):
     my_file = read(path_to_file)
     my_foods = {}
     my_days = {}
     names = set()
     dishes = set()
     days = set()
-    
+
     for a, b, c in my_file:
         if a not in my_foods:
             my_foods[a] = [b]
@@ -55,7 +55,7 @@ def analyze_log(path_to_file):
             my_days[a] = [c]
         else:
             my_days[a].append(c)
-        
+
         names.add(a)
         dishes.add(b)
         days.add(c)
@@ -72,9 +72,5 @@ def analyze_log(path_to_file):
     my_file.append(item3+'\n')
     my_file.append(item4)
 
-
     with open("data/mkt_campaign.txt", "w") as namesFile:
-        namesFile.writelines(my_file)   
-
-
-analyze_log('data/orders_1.csv')
+        namesFile.writelines(my_file)
