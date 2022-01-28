@@ -64,4 +64,17 @@ class TrackOrders:
         return max_key[0]
 
     def get_least_busy_day(self):
-        pass
+        costumers_quantity_per_day = {}
+        for order in self._orders:
+            _person, _dish, day = order
+            if day not in costumers_quantity_per_day:
+                costumers_quantity_per_day[day] = 1
+            else:
+                costumers_quantity_per_day[day] += 1
+        min_value = min(costumers_quantity_per_day.values())
+        min_key = [
+            key
+            for key, value in costumers_quantity_per_day.items()
+            if value == min_value
+        ]
+        return min_key[0]
