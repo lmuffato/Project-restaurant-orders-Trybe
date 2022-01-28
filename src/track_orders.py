@@ -44,7 +44,10 @@ class TrackOrders:
         return not_frequented
 
     def get_busiest_day(self):
-        pass
+        frequentedDays = list()
+        for personName, order, date in self.orders:
+            frequentedDays.append(date)
+        return max(frequentedDays, key=frequentedDays.count)
 
     def get_least_busy_day(self):
         pass
