@@ -22,7 +22,17 @@ class TrackOrders:
         return max_key[0]
 
     def get_never_ordered_per_costumer(self, costumer):
-        pass
+        dishes = set()
+        costumer_dishes = set()
+
+        for order in self._orders:
+            person, dish, _day = order
+            if dish not in dishes:
+                dishes.add(dish)
+            if person == costumer and dish not in costumer_dishes:
+                costumer_dishes.add(dish)
+
+        return costumer_dishes.symmetric_difference(dishes)
 
     def get_days_never_visited_per_costumer(self, costumer):
         pass
