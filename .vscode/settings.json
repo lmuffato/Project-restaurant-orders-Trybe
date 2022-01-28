@@ -1,6 +1,7 @@
 {
   "conventionalCommits.scopes": [
     "analyze_log",
-    "track_orders"
+    "track_orders",
+    "inventory_control"
   ]
 }

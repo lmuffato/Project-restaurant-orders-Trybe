@@ -16,10 +16,16 @@ class InventoryControl:
     }
 
     def __init__(self):
-        pass
+        self._orders = []
+        self._used_ingredients = dict()
+
+        for ingredient in self.MINIMUM_INVENTORY.keys():
+            self._used_ingredients[ingredient] = 0
 
     def add_new_order(self, costumer, order, day):
-        pass
+        self._orders.append([costumer, order, day])
+        for ingredient in self.INGREDIENTS[order]:
+            self._used_ingredients[ingredient] += 1
 
     def get_quantities_to_buy(self):
-        pass
+        return self._used_ingredients
