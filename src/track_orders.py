@@ -11,7 +11,11 @@ class TrackOrders:
         self.orders.append([costumer, order, day])
 
     def get_most_ordered_dish_per_costumer(self, costumer):
-        pass
+        personsOrders = list()
+        for personName, order, date in self.orders:
+            if personName == costumer:
+                personsOrders.append(order)
+        return max(personsOrders, key=personsOrders.count)
 
     def get_never_ordered_per_costumer(self, costumer):
         personsOrders = set()
