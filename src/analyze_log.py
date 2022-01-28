@@ -70,6 +70,36 @@ def days_without_going(data, name):
     return all_days - active_days
 
 
+def busiest_day(data):
+    answer = data[0][2]
+    busy_days = {}
+
+    for item in data:
+        day = item[2]
+        if day not in busy_days:
+            busy_days[day] = 1
+        else:
+            busy_days[day] += 1
+        if busy_days[answer] < busy_days[day]:
+            answer = day
+    return answer
+
+
+def least_busy_day(data):
+    answer = data[0][2]
+    busy_days = {}
+
+    for item in data:
+        day = item[2]
+        if day not in busy_days:
+            busy_days[day] = 1
+        else:
+            busy_days[day] += 1
+        if busy_days[answer] > busy_days[day]:
+            answer = day
+    return answer
+
+
 def analyze_log(path_to_file):
     data = import_data_csv(path_to_file)
     maria_request = most_requested_dish(data, 'maria')
