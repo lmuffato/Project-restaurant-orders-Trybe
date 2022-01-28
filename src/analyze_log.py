@@ -80,5 +80,8 @@ def analyze_log(path_to_file):
     joao_never_went = find_difference(
         [product[2] for product in joao_data], [product[2] for product in data]
     )
+    results.append(joao_never_went)
 
-    print(joao_never_went)
+    with open('data/mkt_campaign.txt', 'w') as file:
+        for item in results:
+            file.write(str(item) + '\n')
