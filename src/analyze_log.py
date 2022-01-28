@@ -1,25 +1,24 @@
 import csv
+from typing import Counter
 
+# Pesquisando o melhor jeito de contar items em lista: https://stackoverflow.com/questions/23240969/python-count-repeated-elements-in-the-list
+
+# Pesquisando como encontrar o maior número dentro de um dicionário: https://stackoverflow.com/questions/268272/getting-key-with-maximum-value-in-dictionary
 
 def analyze_log(path_to_file):
-    the_dict = {}
     with open(path_to_file) as f:
-        csv_readed_file = csv.reader(f)
-        seting = set(f.readlines())
-        for item in seting:
-            name, food, weekday = item.split(',')
-            try:
-                if the_dict[name] not in the_dict:
-                    the_dict[name] = ''
-            except KeyError:
-                the_dict[name] = ''
-        # for position in set(f.readlines()):
-        #     name, food, weekday = position.split(',')
-        #     people.append(name)
-        #     weekdayNFood.append({weekday: food})
-    print(the_dict)
-    f.close()
-    # raise NotImplementedError
+        csv_opened_file = csv.DictReader(f, fieldnames=['name', 'food', 'weekday'])
 
+        def person_favorite_meal(opened_file, person):
+            person_orders = Counter(
+                order['food'] for order in opened_file if order['name'] == person
+            )
+
+            return max(person_orders, key=person_orders.get) # estranho é que não precisa chamar a função dentro do key
+
+        print(person_favorite_meal(csv_opened_file, 'arnaldo'))
+        data_to_write = f"{person_favorite_meal(csv_opened_file, 'maria')}\n"
+           
+        
 
 analyze_log('../data/orders_1.csv')
