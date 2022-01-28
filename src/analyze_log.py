@@ -14,6 +14,14 @@ def most_requested_dish_by_maria(data):
     return max_key[0]
 
 
+def how_many_times_arnaldo_asked_hamburguer(data):
+    hamburguer_count = 0
+    for person, dish, _day in data:
+        if person == "arnaldo" and dish == "hamburguer":
+            hamburguer_count += 1
+    return hamburguer_count
+
+
 def analyze_log(path_to_file):
     if not path_to_file.endswith(".csv"):
         raise FileNotFoundError(
@@ -24,4 +32,8 @@ def analyze_log(path_to_file):
         file_data = list(reader(file))
 
     maria_fav_dish = most_requested_dish_by_maria(file_data)
+    arnaldo_hamburguer_count = how_many_times_arnaldo_asked_hamburguer(
+        file_data
+    )
     print(maria_fav_dish)
+    print(arnaldo_hamburguer_count)
