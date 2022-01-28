@@ -8,23 +8,28 @@ def read(path):
         return [row for row in reader]
 
 
-def get_frequency(my_list):
-    most_frequent = my_list[0]
+#  Recebe um array de strings
+def get_frequency(array):
+    most_frequent = array[0]
+    less_frequent = array[0]
     list_count = {}
-    foods = set()
+    items = set()
 
-    for food in my_list:
-        if food not in list_count:
-            list_count[food] = 1
+    for element in array:
+        if element not in list_count:
+            list_count[element] = 1
         else:
-            list_count[food] += 1
+            list_count[element] += 1
 
-        if list_count[food] > list_count[most_frequent]:
-            list_count[most_frequent] = list_count[food]
+        if list_count[element] > list_count[most_frequent]:
+            most_frequent = element
 
-        foods.add(food)
+        if list_count[element] < list_count[less_frequent]:
+            less_frequent = element
 
-    return (list_count, most_frequent, foods)
+        items.add(element)
+
+    return (list_count, most_frequent, less_frequent, items)
 
 
 def check_path(path_to_file):
@@ -34,18 +39,17 @@ def check_path(path_to_file):
     _, extension = os.path.splitext(path_to_file)
 
     if extension != ".csv":
-        raise FileNotFoundError("Extensão inválida")
+        raise FileNotFoundError(f"No such file or directory: '{path_to_file}'")
 
 
-def analyze_log(path_to_file):
-    my_file = read(path_to_file)
+def get_data(csv_parsed):
     my_foods = {}
     my_days = {}
     names = set()
     dishes = set()
     days = set()
 
-    for a, b, c in my_file:
+    for a, b, c in csv_parsed:
         if a not in my_foods:
             my_foods[a] = [b]
         else:
@@ -60,12 +64,20 @@ def analyze_log(path_to_file):
         dishes.add(b)
         days.add(c)
 
+    return (my_foods, my_days, names, dishes, days)
+
+
+def analyze_log(path_to_file):
+    check_path(path_to_file)
+    csv_parsed = read(path_to_file)
+    my_foods, my_days, _, dishes, days = get_data(csv_parsed)
+
     my_file = []
 
     item1 = get_frequency(my_foods['maria'])[1]
     item2 = str(get_frequency(my_foods['arnaldo'])[0]['hamburguer'])
-    item3 = str(dishes - get_frequency(my_foods['joao'])[2])
-    item4 = str(days - get_frequency(my_days['joao'])[2])
+    item3 = str(dishes - get_frequency(my_foods['joao'])[3])
+    item4 = str(days - get_frequency(my_days['joao'])[3])
 
     my_file.append(item1+'\n')
     my_file.append(item2+'\n')
@@ -74,3 +86,6 @@ def analyze_log(path_to_file):
 
     with open("data/mkt_campaign.txt", "w") as namesFile:
         namesFile.writelines(my_file)
+
+
+analyze_log('data/orders_1.csv')
