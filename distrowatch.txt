@@ -1,0 +1,16 @@
+TOP 10: https://distrowatch.com
+
+RANKING DE ACESSOS
+Período: Last 6 months
+ 
+Rank  Distribuição	HPD*
+1	    MX Linux	    3639>
+2	    EndeavourOS	  3444>
+3	    Manjaro	      2216>
+4	    Mint	        2079=
+5	    Pop!_OS	      1518=
+6	    Ubuntu	      1359<
+7	    Debian	      1318=
+8	    Garuda	      1248=
+9	    elementary	  1062=
+10    Fedora	      998=
