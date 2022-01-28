@@ -1,3 +1,4 @@
+import src.analyze_log as analyze_log
 
 
 class TrackOrders:
@@ -11,37 +12,16 @@ class TrackOrders:
         self.orders.append([costumer, order, day])
 
     def get_most_ordered_dish_per_costumer(self, costumer):
-        personsOrders = list()
-        for personName, order, date in self.orders:
-            if personName == costumer:
-                personsOrders.append(order)
-        return max(personsOrders, key=personsOrders.count)
+        return analyze_log.get_favorite_order(self.orders, costumer)
 
     def get_never_ordered_per_costumer(self, costumer):
-        personsOrders = set()
-        menu = set()
-        neverOrdered = set()
-        for personName, personOrder, date in self.orders:
-            if personName == costumer:
-                personsOrders.add(personOrder)
-            menu.add(personOrder)
-        for ordered in menu:
-            if ordered not in personsOrders:
-                neverOrdered.add(ordered)
-        return neverOrdered
+        return analyze_log.never_ordered_by_person(self.orders, costumer)
 
     def get_days_never_visited_per_costumer(self, costumer):
-        frequented_days = set()
-        schedule = set()
-        not_frequented = set()
-        for personName, personOrder, date in self.orders:
-            if personName == costumer:
-                frequented_days.add(date)
-            schedule.add(date)
-        for day in schedule:
-            if day not in frequented_days:
-                not_frequented.add(day)
-        return not_frequented
+        return analyze_log.get_days_not_frequented_by_person(
+            self.orders,
+            costumer
+        )
 
     def get_busiest_day(self):
         frequentedDays = list()
