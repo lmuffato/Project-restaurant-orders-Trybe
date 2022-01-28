@@ -36,8 +36,7 @@ class InventoryControl:
         )
 
         def flat_map(f, xs):
-            reduce(lambda acc, cur: acc + cur, map(f, xs), [])
-
+            return reduce(lambda acc, cur: acc + cur, map(f, xs), [])
         ingredientes_all_orders = flat_map(lambda x: x, ingredients_per_order)
         count_ingredients = Counter(ingredientes_all_orders)
         MINIMUM_INVENTORY = {
