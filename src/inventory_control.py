@@ -33,6 +33,12 @@ class InventoryControl:
         for ingredient in self.INGREDIENTS[order]:
             self._used_ingredients[ingredient] += 1
 
+            ingredient_stock = self.MINIMUM_INVENTORY[ingredient]
+            used_ingredient_qty = self._used_ingredients[ingredient]
+
+            if ingredient_stock - used_ingredient_qty < 0:
+                return False
+
     def get_quantities_to_buy(self):
         return self._used_ingredients
 
