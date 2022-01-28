@@ -1,4 +1,5 @@
 import csv
+import os
 
 def read(path):
     with open(path) as file:
@@ -26,6 +27,17 @@ def get_frequency(my_list):
 
 
 def analyze_log(path_to_file):
+    if not path_to_file:
+        raise FileNotFoundError("Arquivo inexistente")
+
+
+    _, extension = os.path.splitext(path_to_file)
+
+
+    if extension != ".csv":
+        raise FileNotFoundError("Extensão inválida")
+
+
     my_file = read(path_to_file)
     my_foods = {}
     my_days = {}
