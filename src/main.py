@@ -5,16 +5,18 @@ from track_orders import TrackOrders
 
 
 def print_info(tracker, control):
+    """ print(tracker.get_orders())
     print(tracker.get_most_ordered_dish_per_costumer('maria'))
-    print(tracker.get_order_frequency_per_costumer('arnaldo', 'hamburguer'))
     print(tracker.get_never_ordered_per_costumer('joao'))
     print(tracker.get_days_never_visited_per_costumer('joao'))
+    print(tracker.get_busiest_day())
+    print(tracker.get_least_busy_day()) """
     print(control.get_quantities_to_buy())
 
 
 def main():
     topic = 'order'
-    path = ""
+    path = ''
 
     tracker = TrackOrders()
     control = InventoryControl()
