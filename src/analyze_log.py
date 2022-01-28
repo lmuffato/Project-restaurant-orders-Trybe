@@ -48,6 +48,12 @@ def days_did_joao_never_go_to_the_dinner(data):
     return days_joao_go.symmetric_difference(days)
 
 
+def write_info_on_target_file(info):
+    with open("data/mkt_campaign.txt", "w") as file:
+        for line in info:
+            file.write(f"{line}\n")
+
+
 def analyze_log(path_to_file):
     if not path_to_file.endswith(".csv"):
         raise FileNotFoundError(
@@ -64,7 +70,11 @@ def analyze_log(path_to_file):
     dishes_joao_never_ordered = which_dishes_joao_never_ordered(file_data)
     days_that_joao_never_go = days_did_joao_never_go_to_the_dinner(file_data)
 
-    print(maria_fav_dish)
-    print(arnaldo_hamburguer_count)
-    print(dishes_joao_never_ordered)
-    print(days_that_joao_never_go)
+    costumers_info = [
+        maria_fav_dish,
+        arnaldo_hamburguer_count,
+        dishes_joao_never_ordered,
+        days_that_joao_never_go,
+    ]
+
+    write_info_on_target_file(costumers_info)
