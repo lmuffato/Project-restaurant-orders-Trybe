@@ -35,7 +35,17 @@ class TrackOrders:
         return costumer_dishes.symmetric_difference(dishes)
 
     def get_days_never_visited_per_costumer(self, costumer):
-        pass
+        days_costumer_go = set()
+        days = set()
+
+        for order in self._orders:
+            person, _dish, day = order
+            if day not in days:
+                days.add(day)
+            if person == costumer and day not in days_costumer_go:
+                days_costumer_go.add(day)
+
+        return days_costumer_go.symmetric_difference(days)
 
     def get_busiest_day(self):
         pass
