@@ -49,8 +49,7 @@ class TrackOrders:
 
         return all_days - days_costumer
 
-
-    def get_busiest_day (self):
+    def get_busiest_day(self):
         busiest_day = self.orders[0][1]
         all_days = {}
 
@@ -64,7 +63,6 @@ class TrackOrders:
                 busiest_day = log[1]
 
         return busiest_day
-
 
     def get_least_busy_day(self):
         least_busy_day = self.orders[0][1]
@@ -80,4 +78,3 @@ class TrackOrders:
                 least_busy_day = log[1]
 
         return least_busy_day
-
