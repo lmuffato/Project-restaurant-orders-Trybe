@@ -1,23 +1,29 @@
 class InventoryControl:
     INGREDIENTS = {
-        'hamburguer': ['pao', 'carne', 'queijo'],
-        'pizza': ['massa', 'queijo', 'molho'],
-        'misto-quente': ['pao', 'queijo', 'presunto'],
-        'coxinha': ['massa', 'frango'],
+        "hamburguer": ["pao", "carne", "queijo"],
+        "pizza": ["massa", "queijo", "molho"],
+        "misto-quente": ["pao", "queijo", "presunto"],
+        "coxinha": ["massa", "frango"],
     }
     MINIMUM_INVENTORY = {
-        'pao': 50,
-        'carne': 50,
-        'queijo': 100,
-        'molho': 50,
-        'presunto': 50,
-        'massa': 50,
-        'frango': 50,
+        "pao": 50,
+        "carne": 50,
+        "queijo": 100,
+        "molho": 50,
+        "presunto": 50,
+        "massa": 50,
+        "frango": 50,
     }
 
     def __init__(self):
         self._orders = []
         self._used_ingredients = dict()
+        self._menu = {
+            "hamburguer": ["pao", "carne", "queijo"],
+            "pizza": ["massa", "queijo", "molho"],
+            "misto-quente": ["pao", "queijo", "presunto"],
+            "coxinha": ["massa", "frango"],
+        }
 
         for ingredient in self.MINIMUM_INVENTORY.keys():
             self._used_ingredients[ingredient] = 0
@@ -29,3 +35,6 @@ class InventoryControl:
 
     def get_quantities_to_buy(self):
         return self._used_ingredients
+
+    def get_available_dishes(self):
+        return self._menu.keys()
