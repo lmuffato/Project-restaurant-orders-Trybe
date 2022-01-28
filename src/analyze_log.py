@@ -35,6 +35,19 @@ def which_dishes_joao_never_ordered(data):
     return joao_dishes.symmetric_difference(dishes)
 
 
+def days_did_joao_never_go_to_the_dinner(data):
+    days_joao_go = set()
+    days = set()
+
+    for person, _dish, day in data:
+        if day not in days:
+            days.add(day)
+        if person == "joao" and day not in days_joao_go:
+            days_joao_go.add(day)
+
+    return days_joao_go.symmetric_difference(days)
+
+
 def analyze_log(path_to_file):
     if not path_to_file.endswith(".csv"):
         raise FileNotFoundError(
@@ -49,6 +62,9 @@ def analyze_log(path_to_file):
         file_data
     )
     dishes_joao_never_ordered = which_dishes_joao_never_ordered(file_data)
+    days_that_joao_never_go = days_did_joao_never_go_to_the_dinner(file_data)
+
     print(maria_fav_dish)
     print(arnaldo_hamburguer_count)
     print(dishes_joao_never_ordered)
+    print(days_that_joao_never_go)
