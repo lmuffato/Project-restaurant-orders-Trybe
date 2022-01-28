@@ -43,38 +43,38 @@ class TrackOrders:
         all_days = set()
 
         for log in self.orders:
-            all_days.add(log[1])
+            all_days.add(log[2])
             if log[0] == costumer:
-                days_costumer.add(log[1])
+                days_costumer.add(log[2])
 
         return all_days - days_costumer
 
     def get_busiest_day(self):
-        busiest_day = self.orders[0][1]
+        busiest_day = self.orders[0][2]
         all_days = {}
 
         for log in self.orders:
-            if log[1] in all_days:
-                all_days[log[1]] += 1
+            if log[2] in all_days:
+                all_days[log[2]] += 1
             else:
-                all_days[log[1]] = 0
+                all_days[log[2]] = 0
 
-            if all_days[log[1]] > all_days[busiest_day]:
-                busiest_day = log[1]
+            if all_days[log[2]] > all_days[busiest_day]:
+                busiest_day = log[2]
 
         return busiest_day
 
     def get_least_busy_day(self):
-        least_busy_day = self.orders[0][1]
+        least_busy_day = self.orders[0][2]
         all_days = {}
 
         for log in self.orders:
-            if log[1] in all_days:
-                all_days[log[1]] += 1
+            if log[2] in all_days:
+                all_days[log[2]] += 1
             else:
-                all_days[log[1]] = 0
+                all_days[log[2]] = 0
 
-            if all_days[log[1]] < all_days[least_busy_day]:
-                least_busy_day = log[1]
+            if all_days[log[2]] < all_days[least_busy_day]:
+                least_busy_day = log[2]
 
         return least_busy_day
