@@ -5,7 +5,7 @@ from collections import Counter
 # INFORMAÇÕES IMPORTANTES: dados[index][0] == "nome"
 # dados[index][1] == "comida" / dados[index][2] == "dia"
 
-# Convertar de CSV para LISTA em Python:
+# Converter de CSV para LISTA em Python:
 # https://www.delftstack.com/pt/howto/python/how-to-read-csv-to-list-in-python
 def leitura(path_to_file):
     with open(path_to_file, mode='r') as pedidos1:
