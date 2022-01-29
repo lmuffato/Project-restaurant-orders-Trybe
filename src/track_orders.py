@@ -36,7 +36,11 @@ class TrackOrders:
         return (set(filtered_data)-set(custumer_filter))
 
     def get_busiest_day(self):
-        pass
+        filtered_data = [d['weekday'] for d in self.orders]
+        count = Counter(filtered_data)
+        return count.most_common(1)[0][0]
 
     def get_least_busy_day(self):
-        pass
+        filtered_data = [d['weekday'] for d in self.orders]
+        count = Counter(filtered_data)
+        return((count.most_common(len(count))[len(count) - 1][0]))
