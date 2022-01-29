@@ -8,14 +8,14 @@ def read_file(path_to_file):
         return data
 
 
-def filter_by_customer(customer, data):
-    customer_data = []
+def filter_by_costumer(costumer, data):
+    costumer_data = []
 
     for item in data:
-        if customer in item:
-            customer_data.append(item)
+        if costumer in item:
+            costumer_data.append(item)
 
-    return customer_data
+    return costumer_data
 
 
 def most_requested(data):
@@ -29,7 +29,7 @@ def most_requested(data):
             request_counter[item[1]] = 1
 
         if request_counter[item[1]] > request_counter[most_requested]:
-            most_requested = request_counter[item[1]]
+            most_requested = item[1]
 
     return most_requested
 
@@ -44,34 +44,34 @@ def product_requestion_counter(product, data):
     return counter
 
 
-def find_difference(customer_data, data):
-    customer_requested = set()
+def find_difference(costumer_data, data):
+    costumer_requested = set()
     menu = set()
 
     for item in data:
         menu.add(item)
 
-    for item in customer_data:
-        customer_requested.add(item)
+    for item in costumer_data:
+        costumer_requested.add(item)
 
-    return menu.difference(customer_requested)
+    return menu.difference(costumer_requested)
 
 
 def analyze_log(path_to_file):
     data = read_file(path_to_file)
     results = []
 
-    maria_data = filter_by_customer("maria", data)
+    maria_data = filter_by_costumer("maria", data)
     maria_most_requested = most_requested(maria_data)
     results.append(maria_most_requested)
 
-    arnaldo_data = filter_by_customer("arnaldo", data)
+    arnaldo_data = filter_by_costumer("arnaldo", data)
     arnaldo_product_requestion = product_requestion_counter(
         "hamburguer", arnaldo_data
     )
     results.append(arnaldo_product_requestion)
 
-    joao_data = filter_by_customer("joao", data)
+    joao_data = filter_by_costumer("joao", data)
     joao_never_requested = find_difference(
         [product[1] for product in joao_data], [product[1] for product in data]
     )
