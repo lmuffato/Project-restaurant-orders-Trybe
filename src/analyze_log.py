@@ -42,12 +42,15 @@ def analyze_log(path_to_file):
     maria_most_ordered = most_ordered_dish(maria_data)
     
     arnaldo_data = person_filter(data, 'arnaldo')
-    arnaldo_ordered = count_order(arnaldo_data, 'misto-quente')
+    arnaldo_ordered = count_order(arnaldo_data, 'hamburguer')
     
     joao_data = person_filter(data, 'joao')
     dishes = dishes_never_ordered(data, joao_data)
     days = absent_days(data, joao_data)
+    
+    log.extend([maria_most_ordered, arnaldo_ordered, dishes, days])
+    
+    with open('data/mkt_campaign.txt', 'w') as file:
+        for item in log:
+            file.write(str(item) + '\n')
 
-    return days
-
-print(analyze_log('data/orders_1.csv'))
