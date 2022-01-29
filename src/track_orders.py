@@ -46,4 +46,16 @@ class TrackOrders:
         return busiest_day
 
     def get_least_busy_day(self):
-        pass
+        day_counter = {}
+        least_busiest_day = self.orders[0][2]
+
+        for item in self.orders:
+            if item[2] in day_counter:
+                day_counter[item[2]] += 1
+            else:
+                day_counter[item[2]] = 1
+
+        if day_counter[item[2]] < day_counter[least_busiest_day]:
+            least_busiest_day = item[2]
+
+        return least_busiest_day
