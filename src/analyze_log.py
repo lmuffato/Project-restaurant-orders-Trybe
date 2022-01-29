@@ -1,6 +1,71 @@
 import csv
 
 
+def orders_by_customer(data, customer):
+    orders = []
+    for item in data:
+        if customer in item:
+            orders.append(item)
+    return orders
+
+
+def most_requested(data):
+    foods_quant = {}
+    for name, food, day in data:
+        if (food not in foods_quant):
+            foods_quant[food] = 1
+        else:
+            foods_quant[food] += 1
+    itemMaxValue = max(foods_quant.items(), key=lambda x: x[1])
+    return itemMaxValue[0]
+
+
+def find_foods_customer_never_buy(data, customer_data):
+    foods = []
+    foods_requested = []
+    for name, food, day in data:
+        if (food not in foods):
+            foods.append(food)
+    for name, food, day in customer_data:
+        foods_requested.append(food)
+    output = set(foods) - set(foods_requested)
+    return output
+
+
+def find_days_customer_never_go(data, customer_data):
+    days = []
+    days_requested = []
+    for name, food, day in data:
+        if (day not in days):
+            days.append(day)
+    for name, food, day in customer_data:
+        days_requested.append(day)
+    output = set(days) - set(days_requested)
+    return output
+
+
+def busiest_day(data):
+    days_with_costumer_count = {}
+    for name, food, day in data:
+        if (day not in days_with_costumer_count):
+            days_with_costumer_count[day] = 1
+        else:
+            days_with_costumer_count[day] += 1
+    itemMaxValue = max(days_with_costumer_count.items(), key=lambda x: x[1])
+    return itemMaxValue[0]
+
+
+def less_busy_day(data):
+    days_with_costumer_count = {}
+    for name, food, day in data:
+        if (day not in days_with_costumer_count):
+            days_with_costumer_count[day] = 1
+        else:
+            days_with_costumer_count[day] += 1
+    itemMinValue = min(days_with_costumer_count.items(), key=lambda x: x[1])
+    return itemMinValue[0]
+
+
 def reader_file(path):
     if (path.endswith('.csv')):
         with open(path, mode='r') as file:
