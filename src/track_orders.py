@@ -28,7 +28,18 @@ class TrackOrders:
         return frequentEat
 
     def get_never_ordered_per_costumer(self, costumer):
-        pass
+        costumerEats = []
+        all_eats = []
+
+        for order in self.orders:
+            if order['nome'] == costumer:
+                costumerEats.append(order['comida'])
+            else:
+                all_eats.append(order['comida'])
+
+        costumerEats_set = set(costumerEats)
+        all_eats_set = set(all_eats)
+        return all_eats_set.difference(costumerEats_set)
 
     def get_days_never_visited_per_costumer(self, costumer):
         pass
