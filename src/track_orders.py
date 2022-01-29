@@ -50,7 +50,7 @@ class TrackOrders:
                 costumeWeeks.append(order['semana'])
             else:
                 all_weeks.append(order['semana'])
-        
+
         costumeWeeks_set = set(costumeWeeks)
         all_weeks_set = set(all_weeks)
         return all_weeks_set.difference(costumeWeeks_set)
