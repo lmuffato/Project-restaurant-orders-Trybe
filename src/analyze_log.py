@@ -4,14 +4,14 @@ from collections import Counter
 
 def read_csv(path_to_file):
     with open(path_to_file, 'r') as file:
-        keys = ["customer", "order", "weekday"]
+        keys = ["costumer", "order", "weekday"]
         reader = csv.DictReader(file, fieldnames=keys)
         data = [data for data in reader]
         return data
 
 
 def person_filter(data, person):
-    filtered_data = [d for d in data if d['customer'] == person]
+    filtered_data = [d for d in data if d['costumer'] == person]
     return filtered_data
 
 
@@ -27,15 +27,15 @@ def count_order(data, dish):
     return count.get(dish)
 
 
-def dishes_never_ordered(data, customer_data):
+def dishes_never_ordered(data, costumer_data):
     filtered_data = [d['order'] for d in data]
-    custumer_filter = [d['order'] for d in customer_data]
+    custumer_filter = [d['order'] for d in costumer_data]
     return (set(filtered_data)-set(custumer_filter))
 
 
-def absent_days(data, customer_data):
+def absent_days(data, costumer_data):
     filtered_data = [d['weekday'] for d in data]
-    custumer_filter = [d['weekday'] for d in customer_data]
+    custumer_filter = [d['weekday'] for d in costumer_data]
     return (set(filtered_data)-set(custumer_filter))
 
 
