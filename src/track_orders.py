@@ -18,23 +18,12 @@ class TrackOrders:
 
     # Retorna o prato que a pessao nunca pediu
     def get_never_ordered_per_costumer(self, costumer):
-        # result = analyze_log.dishes_never_asked(self.requests, costumer)
-        # # print(result)
-        # return result
+
         pass
 
     # Retorna o dia que a pessoa nunca foi ao restaurante
     def get_days_never_visited_per_costumer(self, costumer):
-        # days_of_week = [requests[2] for requests in self.requests]
-        # for requests in self.requests:
-        #     if requests[0] == costumer:
-        #         for day in days_of_week:
-        #             if day == requests[2]:
-        #                 days_of_week.remove(day)
 
-        # print(days_of_week)
-
-        # return days_of_week
         pass
 
     # Retorna o dia mais movimentado
