@@ -50,7 +50,7 @@ def dishs_never_order_by_Joao(orders):
             and order["food"] not in list_not_order_food
         ):
             list_not_order_food.append(order["food"])
-    return list_not_order_food
+    return set(list_not_order_food)
 
 
 def days_Joao_never_went(orders):
@@ -67,7 +67,7 @@ def days_Joao_never_went(orders):
             and order["week"] not in list_day_never_went
         ):
             list_day_never_went.append(order["week"])
-    return list_day_never_went
+    return set(list_day_never_went)
 
 
 def write_data(
