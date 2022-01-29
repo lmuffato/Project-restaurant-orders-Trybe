@@ -21,7 +21,7 @@ def file_reader(path):
         raise FileNotFoundError(f"No such file or directory: '{path}'")
 
 
-# Retorna o prato mas pedido de acordo com o cliente
+# Retorna o prato mais pedido de acordo com o cliente
 def most_request_dish(data, client):
     dishes = []
 
@@ -50,6 +50,7 @@ def dishes_never_asked(data, client):
             for dish in dishes:
                 if dish == requests[1]:
                     dishes.remove(dish)
+
     return set(dishes)
 
 
