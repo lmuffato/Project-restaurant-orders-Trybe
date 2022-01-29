@@ -33,8 +33,20 @@ def arnaldo_pediu_hamburguer(path_to_file):
     return quantos_hamburgueres
 
 
+def pratos_joao_nunca_pediu(path_to_file):
+    dados = leitura(path_to_file)
+    todos_os_pratos = set()
+    pratos_do_joao = set()
+    for index in range(len(dados)):
+        todos_os_pratos.add(dados[index][1])
+        if dados[index][0] == 'joao':
+            pratos_do_joao.add(dados[index][1])
+    return todos_os_pratos.difference(pratos_do_joao)
+
+
 # Aprendi o ".format" no curso de Python do Curso em Vídeo (Gustavo Guanabara)
 def analyze_log(path_to_file):
     with open('./data/mkt_campaign.txt', mode='w') as arquivo:
         arquivo.write('{} \n'.format(mais_pedido_de_maria(path_to_file)))
         arquivo.write('{} \n'.format(arnaldo_pediu_hamburguer(path_to_file)))
+        arquivo.write('{} \n'.format(pratos_joao_nunca_pediu(path_to_file)))
