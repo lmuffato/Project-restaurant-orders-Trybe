@@ -28,13 +28,44 @@ def arnaldo_requested_hamburguer(data, costumer):
     for name, food, day in data:
         if (name == costumer and food == 'hamburguer'):
             count += 1
-    return count
+    return str(count)
+
+
+def joao_never_request(data, costumer):
+    foods = []
+    foods_requested = []
+    for name, food, day in data:
+        if (food not in foods):
+            foods.append(food)
+        if (name == costumer):
+            foods_requested.append(food)
+    # https://stackoverflow.com/questions/3462143/get-difference-between-two-lists
+    output = set(foods) - set(foods_requested)
+    return output
+
+
+def days_joao_not_go(data, costumer):
+    days = []
+    days_go = []
+    for name, food, day in data:
+        if (day not in days):
+            days.append(day)
+        if (name == costumer):
+            days_go.append(day)
+    output = set(days) - set(days_go)
+    return output
 
 
 def analyze_log(path_to_file):
     data = reader_file(path_to_file)
-    most_requested_by_maria(data)
-    arnaldo_requested_hamburguer(data, 'arnaldo')
+    maria_mr = most_requested_by_maria(data)
+    arnaldo_rh = arnaldo_requested_hamburguer(data, 'arnaldo')
+    joao_nr = joao_never_request(data, 'joao')
+    joao_ng = days_joao_not_go(data, 'joao')
+    results = [maria_mr, arnaldo_rh, joao_nr, joao_ng]
+    with open("data/mkt_campaign.txt", mode='w') as file:
+        for item in results:
+            file.write(f"{item}\n")
 
 
 analyze_log('./data/orders_1.csv')
