@@ -31,7 +31,19 @@ class TrackOrders:
         return never_ordered
 
     def get_days_never_visited_per_costumer(self, costumer):
-        pass
+        all_days_repeated = []
+        all_days = []
+        costumer_days = []
+        for order in self.order:
+            if order[0] == costumer:
+                costumer_days.append(order[2])
+            all_days_repeated.append(order[2])
+
+        for day in all_days_repeated:
+            if day not in all_days:
+                all_days.append(day)
+        never_visited = costumer_never_visited(all_days, costumer_days)
+        return never_visited
 
     def get_busiest_day(self):
         pass
@@ -61,3 +73,11 @@ def never_ordered_customer(all_foods, joao_foods):
             not_ordered.add(foods)
 
     return not_ordered
+
+
+def costumer_never_visited(all_days, costumer_days):
+    never_went = set()
+    for day in all_days:
+        if day not in costumer_days:
+            never_went.add(day)
+    return never_went
