@@ -45,10 +45,29 @@ def dishs_never_order_by_Joao(orders):
             # orders_checked[order['food']] = True
 
     for order in orders:
-        if order["food"] not in list:
-            if order["food"] not in list_not_order_food:
-                list_not_order_food.append(order["food"])
+        if (
+            order["food"] not in list
+            and order["food"] not in list_not_order_food
+        ):
+            list_not_order_food.append(order["food"])
     return list_not_order_food
+
+
+def days_Joao_never_went(orders):
+    list = []
+    list_day_never_went = []
+    for order in orders:
+        if order["name"] == "joao" and order["week"] not in list:
+            list.append(order["week"])
+            # orders_checked[order['food']] = True
+
+    for order in orders:
+        if (
+            order["week"] not in list
+            and order["week"] not in list_day_never_went
+        ):
+            list_day_never_went.append(order["week"])
+    return list_day_never_went
 
 
 def analyze_log(path_to_file):
@@ -56,4 +75,5 @@ def analyze_log(path_to_file):
     most_requested_by_Maria(data)
     amount_hamburguer_order_by_Arnaldo(data)
     dishs_never_order_by_Joao(data)
+    days_Joao_never_went(data)
     raise NotImplementedError(data)
