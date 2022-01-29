@@ -2,16 +2,16 @@ import csv
 from collections import Counter
 
 
-# Código de leitura que eu mesmo criei no arquivo jobs.py do meu projeto
-# Job Insights. Link: https://github.com/tryber/sd-010-a-project-
-# job-insights/blob/carlos25xrm-job-insights/src/jobs.py
+# INFORMAÇÕES IMPORTANTES: dados[index][0] == "nome"
+# dados[index][1] == "comida" / dados[index][2] == "dia"
+
+# Convertar de CSV para LISTA em Python:
+# https://www.delftstack.com/pt/howto/python/how-to-read-csv-to-list-in-python
 def leitura(path_to_file):
     with open(path_to_file, mode='r') as pedidos1:
-        dados = []
-        dados_lidos = csv.DictReader(pedidos1)
-        for elemento in dados_lidos:
-            dados.append(elemento)
-    return dados
+        dados = csv.reader(pedidos1)
+        dados_lidos = list(dados)
+    return dados_lidos
 
 
 def mais_pedido_de_maria(path_to_file):
@@ -28,4 +28,3 @@ def mais_pedido_de_maria(path_to_file):
 def analyze_log(path_to_file):
     with open('./data/mkt_campaign.txt', mode='w') as arquivo:
         arquivo.write('{} \n'.format(mais_pedido_de_maria(path_to_file)))
-    raise NotImplementedError
