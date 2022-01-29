@@ -78,7 +78,6 @@ def joao_never_went(all_days, joao_days):
     for day in all_days:
         if day not in joao_days:
             never_went.add(day)
-    
     return never_went
 
 
@@ -104,3 +103,8 @@ def analyze_log(path_to_file):
     arnaldo_hamburguer = times_arnaldo_ordered_hamb(csv_file)
     never_ordered = joao_orders(csv_file)
     joao_days = days_joao(csv_file)
+    with open("data/mkt_campaign.txt", "w") as file:
+        file.write(f"{maria_most_ordered}\n")
+        file.write(f"{arnaldo_hamburguer}\n")
+        file.write(f"{never_ordered}\n")
+        file.write(f"{joao_days}")
