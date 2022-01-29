@@ -24,7 +24,8 @@ def mais_pedido_de_maria(path_to_file):
     return mais_pedido
 
 
+# Aprendi o ".format" no curso de Python do Curso em Vídeo (Gustavo Guanabara)
 def analyze_log(path_to_file):
     with open('./data/mkt_campaign.txt', mode='w') as arquivo:
-        arquivo.write(f"{mais_pedido_de_maria(path_to_file)} \n")
+        arquivo.write('{} \n'.format(mais_pedido_de_maria(path_to_file)))
     raise NotImplementedError
