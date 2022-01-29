@@ -70,10 +70,28 @@ def days_Joao_never_went(orders):
     return list_day_never_went
 
 
+def write_data(
+    most_requested_by_Maria,
+    mount_hamburguer_order_by_Arnaldo,
+    dishs_never_order_by_Joao,
+    days_Joao_never_went,
+):
+    with open("data/mkt_campaign.txt", "w") as file:
+        file.write(f"{most_requested_by_Maria}\n")
+        file.write(f"{mount_hamburguer_order_by_Arnaldo}\n")
+        file.write(f"{dishs_never_order_by_Joao}\n")
+        file.write(f"{days_Joao_never_went}\n")
+
+
 def analyze_log(path_to_file):
     data = csv_import(path_to_file)
     most_requested_by_Maria(data)
     amount_hamburguer_order_by_Arnaldo(data)
     dishs_never_order_by_Joao(data)
     days_Joao_never_went(data)
-    raise NotImplementedError(data)
+    write_data(
+        most_requested_by_Maria(data),
+        amount_hamburguer_order_by_Arnaldo(data),
+        dishs_never_order_by_Joao(data),
+        days_Joao_never_went(data),
+    )
