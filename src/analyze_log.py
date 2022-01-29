@@ -20,8 +20,7 @@ def mais_pedido_de_maria(path_to_file):
     for index in range(len(dados)):
         if dados[index][0] == 'maria':
             pedidos_de_maria.append(dados[index][1])
-    mais_pedido = list(Counter(pedidos_de_maria))[0]
-    return mais_pedido
+    return list(Counter(pedidos_de_maria))[0]
 
 
 def arnaldo_pediu_hamburguer(path_to_file):
