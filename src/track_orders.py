@@ -53,7 +53,11 @@ class TrackOrders:
         return busiest
 
     def get_least_busy_day(self):
-        pass
+        days = []
+        for order in self.order:
+            days.append(order[2])
+        least_busy = get_least_ordered(days)
+        return least_busy
 
 
 def get_most_ordered(costumer_orders):
@@ -85,3 +89,17 @@ def costumer_never_visited(all_days, costumer_days):
         if day not in costumer_days:
             never_went.add(day)
     return never_went
+
+
+def get_least_ordered(costumer_orders):
+    least_ordered = costumer_orders[0]
+    count = {}
+    for order in costumer_orders:
+        if order not in count:
+            count[order] = 1
+        else:
+            count[order] += 1
+
+        if count[order] < count[least_ordered]:
+            least_ordered = order
+    return least_ordered
