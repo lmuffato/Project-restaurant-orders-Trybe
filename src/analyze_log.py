@@ -26,9 +26,9 @@ def analyze_log(path_to_file):
 
 
         def person_never_ordered(opened_file, person):
-            person_ordered_meals = Counter(
+            person_ordered_meals = Counter([
                 order['food'] for order in opened_file if order['name'] == person
-            )
+            ])
             every_ordered_meal = Counter([order['food'] for order in opened_file])
             
             list_difference = [
@@ -37,5 +37,16 @@ def analyze_log(path_to_file):
             return f"1- {person_ordered_meals} 2- {every_ordered_meal}"
 
         print(person_never_ordered(csv_opened_file, 'joao'))
+
+        def person_not_ordered_days(order_dict, person):
+
+            every_ordered_days = Counter([order["weekday"] for order in order_dict])
+            person_ordered_days = Counter([order["weekday"] for order in order_dict if order["name"] == person])
+
+            # list_difference = [
+            #     day for day in every_ordered_days if day not in person_ordered_days]
+
+            return every_ordered_days
+
 
 analyze_log('../data/orders_1.csv')
