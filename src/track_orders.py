@@ -42,7 +42,18 @@ class TrackOrders:
         return all_eats_set.difference(costumerEats_set)
 
     def get_days_never_visited_per_costumer(self, costumer):
-        pass
+        costumeWeeks = []
+        all_weeks = []
+
+        for order in self.orders:
+            if order['nome'] == costumer:
+                costumeWeeks.append(order['semana'])
+            else:
+                all_weeks.append(order['semana'])
+        
+        costumeWeeks_set = set(costumeWeeks)
+        all_weeks_set = set(all_weeks)
+        return all_weeks_set.difference(costumeWeeks_set)
 
     def get_busiest_day(self):
         pass
