@@ -1,6 +1,10 @@
 class TrackOrders:
+    # __init__ é o método construtor => Course 33:01
+    def __init__(self):
+        self.pedidos = []
+
     def __len__(self):
-        pass
+        return len(self.pedidos)
 
     def add_new_order(self, costumer, order, day):
         pass
