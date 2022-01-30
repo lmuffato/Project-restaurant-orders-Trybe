@@ -1,3 +1,9 @@
+from collections import Counter
+
+
+# INFORMAÇÕES IMPORTANTES: dados[index][0] == "nome"
+# dados[index][1] == "comida" / dados[index][2] == "dia"
+
 class TrackOrders:
     # __init__ é o método construtor => Course 33:01
     def __init__(self):
@@ -10,7 +16,12 @@ class TrackOrders:
         self.pedidos.append([costumer, order, day])
 
     def get_most_ordered_dish_per_costumer(self, costumer):
-        pass
+        lista_de_pedidos = self.pedidos
+        pedidos_do_cliente = []
+        for index in range(len(lista_de_pedidos)):
+            if lista_de_pedidos[index][0] == costumer:
+                pedidos_do_cliente.append(lista_de_pedidos[index][1])
+        return list(Counter(pedidos_do_cliente))[1]
 
     def get_never_ordered_per_costumer(self, costumer):
         pass
