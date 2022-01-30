@@ -34,7 +34,14 @@ class TrackOrders:
         return todos_os_pratos.difference(pratos_do_cliente)
 
     def get_days_never_visited_per_costumer(self, costumer):
-        pass
+        lista_de_pedidos = self.pedidos
+        todos_os_dias = set()
+        dias_do_cliente = set()
+        for index in range(len(lista_de_pedidos)):
+            todos_os_dias.add(lista_de_pedidos[index][2])
+            if lista_de_pedidos[index][0] == costumer:
+                dias_do_cliente.add(lista_de_pedidos[index][2])
+        return todos_os_dias.difference(dias_do_cliente)
 
     def get_busiest_day(self):
         pass
