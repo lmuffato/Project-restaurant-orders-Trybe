@@ -51,6 +51,21 @@ def count_joao(list):
     return { order for order in orders if order not in joao_orders }
 
 
+def count_days(list):
+    days = {}
+    joao_days = {}
+
+    for register in list:
+        if register['day'] not in days:
+            days[register['day']] = True
+
+        if register['client'] == 'joao':
+            if register['day'] not in joao_days:
+                joao_days[register['day']] = True
+
+    return { day for day in days if day not in joao_days }
+
+
 def analyze_log(path_to_file):
     raise NotImplementedError
 
