@@ -48,7 +48,7 @@ def count_joao(list):
             if register['order'] not in joao_orders:
                 joao_orders[register['order']] = True
 
-    return { order for order in orders if order not in joao_orders }
+    return {order for order in orders if order not in joao_orders}
 
 
 def count_days(list):
@@ -63,7 +63,7 @@ def count_days(list):
             if register['day'] not in joao_days:
                 joao_days[register['day']] = True
 
-    return { day for day in days if day not in joao_days }
+    return {day for day in days if day not in joao_days}
 
 
 def analyze_log(path_to_file):
@@ -80,5 +80,3 @@ def analyze_log(path_to_file):
         file.write(str(function)+"\n")
 
     file.close()
-
-
