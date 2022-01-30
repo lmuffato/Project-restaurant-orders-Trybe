@@ -36,6 +36,20 @@ def count_arnaldo(list):
     return count
 
 
+def count_joao(list):
+    orders = {}
+    joao_orders = {}
+
+    for register in list:
+        if register['order'] not in orders:
+            orders[register['order']] = True
+
+        if register['client'] == 'joao':
+            if register['order'] not in joao_orders:
+                joao_orders[register['order']] = True
+
+    return { order for order in orders if order not in joao_orders }
+
 
 def analyze_log(path_to_file):
     raise NotImplementedError
