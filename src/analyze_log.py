@@ -42,8 +42,4 @@ def analyze_log(path_to_file):
         else:
             raise FileNotFoundError(
                 f"No such file or directory: '{path_to_file}'")
-
-
-path_to_file = '/home/luiz/Trybe/sd-010-a-restaurant-orders/data/orders_1.csv'
-teste = analyze_log(path_to_file)
-print(teste)
+            
