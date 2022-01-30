@@ -25,6 +25,17 @@ def count_maria(list):
     return max_fraquency
 
 
+def count_arnaldo(list):
+    count = 0
+
+    for register in list:
+        if register['client'] == 'arnaldo':
+            if register['order'] == 'hamburguer':
+                count += 1
+
+    return count
+
+
 
 def analyze_log(path_to_file):
     raise NotImplementedError
