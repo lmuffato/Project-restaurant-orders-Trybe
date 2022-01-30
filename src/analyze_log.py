@@ -67,5 +67,18 @@ def count_days(list):
 
 
 def analyze_log(path_to_file):
-    raise NotImplementedError
+    file = open("data/mkt_campaign.txt", mode="w")
+    reading = read(path_to_file)
+    all_functions = [
+        count_maria(reading),
+        count_arnaldo(reading),
+        count_joao(reading),
+        count_days(reading)
+    ]
+
+    for function in all_functions:
+        file.write(str(function)+"\n")
+
+    file.close()
+
 
