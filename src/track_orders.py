@@ -36,3 +36,4 @@ class TrackOrders:
         for order in self.orders:
             week_days.append(order[2])
         return Counter(week_days).most_common()[-1][0]
+    
