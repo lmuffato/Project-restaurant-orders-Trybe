@@ -23,7 +23,9 @@ class TrackOrders:
         pass
 
     def get_busiest_day(self):
-        pass
+        return Counter(
+            [order[2] for order in self.orders]
+            ).most_common(1)[0][0]
 
     def get_least_busy_day(self):
         return Counter(
