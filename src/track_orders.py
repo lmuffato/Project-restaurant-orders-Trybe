@@ -28,11 +28,11 @@ class TrackOrders:
 
     def get_never_ordered_per_costumer(self, costumer):
         return set([food for food in self.available_foods
-                if food not in self.orders[costumer]['orders']])
+                    if food not in self.orders[costumer]['orders']])
 
     def get_days_never_visited_per_costumer(self, costumer):
         return set([day for day in self.openned_days
-                if day not in self.orders[costumer]['days_at_restaurant']])
+                    if day not in self.orders[costumer]['days_at_restaurant']])
 
     def concatenate_arrays(self):
         union_array = []
