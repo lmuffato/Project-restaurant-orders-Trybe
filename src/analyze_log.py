@@ -1,17 +1,23 @@
 import csv
 from collections import Counter
 
-# https://stackoverflow.com/questions/17039539/replace-fieldnames-when-using-dictreader -  inserir chaves em dict
+# https://stackoverflow.com/questions/17039539/replace-fieldnames-when-using-dictreader
+# inserir chaves em dict
+
 
 def file_reader(path_to_file):
     with open(path_to_file, 'r') as file:
-        dict_data = csv.DictReader(file, fieldnames = ( "customer_name", "order", "day" ))
+        dict_data = csv.DictReader(file, fieldnames = (
+            "customer_name", "order", "day"
+            ))
         data_file = [data for data in dict_data]
         return data_file
 
 
 def custumer_info(data, customer_name):
-    filtered_data = [single_dict for single_dict in data if single_dict['customer_name'] == customer_name]
+    filtered_data = [single_dict 
+                    for single_dict in data
+                    if single_dict['customer_name'] == customer_name]
     return filtered_data
 
 
