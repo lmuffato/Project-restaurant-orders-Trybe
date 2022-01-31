@@ -8,9 +8,10 @@ from collections import Counter
 def file_reader(path_to_file):
     with open(path_to_file, 'r') as file:
         chaves = ["customer_name", "order", "day"]
-        dict_data = csv.DictReader(file, fieldnames = chaves)
+        dict_data = csv.DictReader(file, fieldnames=chaves)
         data_file = [data for data in dict_data]
         return data_file
+
 
 def custumer_info(data, name):
     cus_info = [dict for dict in data if dict['customer_name'] == name]
