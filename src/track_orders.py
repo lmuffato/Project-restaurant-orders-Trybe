@@ -14,7 +14,20 @@ class TrackOrders:
         self.orders.append(order)
 
     def get_most_ordered_dish_per_costumer(self, costumer):
-        pass
+        count = {}
+        most_frequent = self.orders[0]['pedido']
+
+        for item in self.orders:
+            if item['cliente'] == costumer:
+                if item['pedido'] not in count:
+                    count[item['pedido']] = 1
+                else:
+                    count[item['pedido']] += 1
+
+                if count[item['pedido']] > count[most_frequent]:
+                    most_frequent = item['pedido']
+
+        return most_frequent
 
     def get_never_ordered_per_costumer(self, costumer):
         pass

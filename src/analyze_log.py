@@ -36,13 +36,14 @@ def get_maria_most_ordered(log):
     most_frequent = log[0]['pedido']
 
     for item in log:
-        if item['pedido'] not in count:
-            count[item['pedido']] = 1
-        else:
-            count[item['pedido']] += 1
+        if item['cliente'] == 'maria':
+            if item['pedido'] not in count:
+                count[item['pedido']] = 1
+            else:
+                count[item['pedido']] += 1
 
-        if count[item['pedido']] > count[most_frequent]:
-            most_frequent = item['pedido']
+            if count[item['pedido']] > count[most_frequent]:
+                most_frequent = item['pedido']
 
     return most_frequent
 
