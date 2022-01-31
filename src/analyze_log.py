@@ -27,6 +27,14 @@ def order_by_maria(tickets):
     return most_common_requests
 
 
+def order_by_arnaldo(tickets):
+    value_initial = 0
+    for ticket in tickets:
+        if ticket["name"] == "arnaldo" and ticket["food"] == "hamburguer":
+            value_initial = +1
+    return value_initial
+
+
 def analyze_log(path_to_file):
     raise NotImplementedError
     # Parabéns, Mike
