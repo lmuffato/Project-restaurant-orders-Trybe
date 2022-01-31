@@ -1,17 +1,5 @@
 from typing import Counter
 
-seed = [
-    ["maria", "pizza", "terça-feira"],
-    ["maria", "hamburguer", "terça-feira"],
-    ["joao", "hamburguer", "terça-feira"],
-    ["maria", "coxinha", "segunda-feira"],
-    ["arnaldo", "misto-quente", "terça-feira"],
-    ["jose", "hamburguer", "sabado"],
-    ["maria", "hamburguer", "terça-feira"],
-    ["maria", "hamburguer", "terça-feira"],
-    ["joao", "hamburguer", "terça-feira"],
-]
-
 
 class TrackOrders:
     def __init__(self) -> None:
@@ -72,12 +60,3 @@ class TrackOrders:
     def get_least_busy_day(self):
         all_days = Counter(order["day"] for order in self.orders)
         return min(all_days, key=all_days.get)
-        pass
-
-
-testing = TrackOrders()
-
-testing.add_new_order("joe", "hamburguer", "sexta")
-testing.add_new_order("joe", "hamburguer", "sabado")
-
-print(testing.get_most_ordered_dish_per_costumer("joe"))
