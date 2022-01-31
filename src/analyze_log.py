@@ -7,9 +7,8 @@ from collections import Counter
 
 def file_reader(path_to_file):
     with open(path_to_file, 'r') as file:
-        dict_data = csv.DictReader(file, fieldnames =(
-            "customer_name", "order", "day"
-            ))
+        chaves = ["customer_name", "order", "day"]
+        dict_data = csv.DictReader(file, fieldnames = (chaves))
         data_file = [data for data in dict_data]
         return data_file
 
@@ -35,7 +34,7 @@ def most_ordered_food(data):
 # https://www.w3schools.com/python/ref_dictionary_get.asp
 
 def total_order_food(data, food):
-    orders = [dict['order'] for dict in data if dict['order']== food]
+    orders = [dict['order'] for dict in data if dict['order'] == food]
     count = Counter(orders)
     result = count.get(food)
     return result
@@ -49,7 +48,7 @@ def food_never_ordered(data, customer_infos):
     return all_orders_set.difference(customer_orders_set)
 
 
-def days_never_been_at(data,customer_data):
+def days_never_been_at(data, customer_data):
     days_open_restaurant = [single_dict['day'] for single_dict in data]
     custumer_days_been = [single_dict['day'] for single_dict in customer_data]
     days_open_restaurant_set = set(days_open_restaurant)
