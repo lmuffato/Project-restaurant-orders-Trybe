@@ -14,12 +14,9 @@ def file_reader(path_to_file):
         return data_file
 
 
-def custumer_info(data, customer_name):
-    filtered_data = [single_dict 
-                    for single_dict in data
-                    if single_dict['customer_name'] 
-                    == customer_name]
-    return filtered_data
+def custumer_info(data, name):
+    cus_info = [dict for dict in data if dict['customer_name'] == name]
+    return cus_info
 
 
 # Requisito realizado com ajuda de Malíria Cegalla - turma 10A
@@ -38,10 +35,8 @@ def most_ordered_food(data):
 # https://www.w3schools.com/python/ref_dictionary_get.asp
 
 def total_order_food(data, food):
-    all_orders_by_food = [single_dict['order']
-                        for single_dict in data
-                        if single_dict['order']== food]
-    count = Counter(all_orders_by_food)
+    orders = [dict['order'] for dict in data if dict['order']== food]
+    count = Counter(orders)
     result = count.get(food)
     return result
 
