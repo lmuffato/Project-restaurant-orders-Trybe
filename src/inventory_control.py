@@ -16,10 +16,24 @@ class InventoryControl:
     }
 
     def __init__(self):
-        pass
+        self.orders = []
+        self.spent_ingredients = {}
 
     def add_new_order(self, costumer, order, day):
-        pass
+        self.orders.append({costumer, order, day})
+        for ingredient in self.INGREDIENTS[order]:
+            if ingredient in self.spent_ingredients:
+                self.spent_ingredients[ingredient] += 1
+            else:
+                self.spent_ingredients[ingredient] = 1
 
     def get_quantities_to_buy(self):
-        pass
+        stock_report = {}
+        for ingredient in self.MINIMUM_INVENTORY.keys():
+            min_stock = self.MINIMUM_INVENTORY[ingredient]
+            if ingredient in self.spent_ingredients:
+                buy = min_stock - self.spent_ingredients[ingredient]
+                stock_report[ingredient] = min_stock - buy
+            else:
+                stock_report[ingredient] = 0
+        return stock_report
