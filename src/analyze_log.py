@@ -7,7 +7,7 @@ from collections import Counter
 
 def file_reader(path_to_file):
     with open(path_to_file, 'r') as file:
-        dict_data = csv.DictReader(file, fieldnames = (
+        dict_data = csv.DictReader(file, fieldnames =(
             "customer_name", "order", "day"
             ))
         data_file = [data for data in dict_data]
@@ -17,7 +17,8 @@ def file_reader(path_to_file):
 def custumer_info(data, customer_name):
     filtered_data = [single_dict 
                     for single_dict in data
-                    if single_dict['customer_name'] == customer_name]
+                    if single_dict['customer_name'] 
+                    == customer_name]
     return filtered_data
 
 
@@ -37,7 +38,9 @@ def most_ordered_food(data):
 # https://www.w3schools.com/python/ref_dictionary_get.asp
 
 def total_order_food(data, food):
-    all_orders_by_food = [single_dict['order'] for single_dict in data if single_dict['order']== food]
+    all_orders_by_food = [single_dict['order']
+                        for single_dict in data
+                        if single_dict['order']== food]
     count = Counter(all_orders_by_food)
     result = count.get(food)
     return result
@@ -49,6 +52,7 @@ def food_never_ordered(data, customer_infos):
     all_orders_set = set(all_orders)
     customer_orders_set = set(customer_orders)
     return all_orders_set.difference(customer_orders_set)
+
 
 def days_never_been_at(data,customer_data):
     days_open_restaurant = [single_dict['day'] for single_dict in data]
