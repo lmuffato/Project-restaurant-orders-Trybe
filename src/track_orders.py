@@ -30,7 +30,14 @@ class TrackOrders:
         return most_frequent
 
     def get_never_ordered_per_costumer(self, costumer):
-        pass
+        opt = set(row['pedido'] for row in self.orders)
+        ordered = set()
+
+        for item in self.orders:
+            if item['cliente'] == costumer:
+                ordered.add(item['pedido'])
+
+        return opt.difference(ordered)
 
     def get_days_never_visited_per_costumer(self, costumer):
         pass
