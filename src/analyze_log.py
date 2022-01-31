@@ -35,6 +35,22 @@ def order_by_arnaldo(tickets):
     return value_initial
 
 
+def never_ordered_by_joao(tickets):
+    list = []
+    not_ticket_food = []
+    for ticket in tickets:
+        if ticket["name"] == "joao" and ticket["food"] not in list:
+            list.append(ticket["food"])
+
+    for ticket in tickets:
+        if (
+            ticket["food"] not in list
+            and ticket["food"] not in not_ticket_food
+        ):
+            not_ticket_food.append(ticket["food"])
+    return set(not_ticket_food)
+
+
 def analyze_log(path_to_file):
     raise NotImplementedError
     # Parabéns, Mike
