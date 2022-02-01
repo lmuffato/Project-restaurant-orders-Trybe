@@ -31,6 +31,13 @@ def count_by_order(data, order):
     return count_order.get(order)
 
 
+def order_never_requested_by_customer(data, customer_filtered):
+    general_order = set([item["order"] for item in data])
+    customer_order = set([item["order"] for item in customer_filtered])
+
+    return general_order.difference(customer_order)
+
+
 def analyze_log(path_to_file):
 
     data_order = read_csv_file(path_to_file)
@@ -40,7 +47,13 @@ def analyze_log(path_to_file):
 
     get_arnaldo_data = filter_order_by_customer(data_order, "arnaldo")
     ordered_by_arnaldo = count_by_order(get_arnaldo_data, "hamburguer")
-    print(ordered_by_arnaldo)
+
+    get_joao_data = filter_order_by_customer(data_order, "joao")
+    ordered_never_requested_by_joao = (
+        order_never_requested_by_customer(data_order, get_joao_data)
+      )
+
+    print(ordered_never_requested_by_joao)
 
 
 # Aprendi com essa explicação o entendimento da lib Counter:
