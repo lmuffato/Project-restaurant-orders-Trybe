@@ -64,6 +64,28 @@ def days_never_snackBar(tickets):
     return set(list_day)
 
 
+def write_data_file(
+    order_by_maria,
+    order_by_arnaldo,
+    never_ordered_by_joao,
+    days_never_snackBar,
+):
+    with open("data/mkt_campaign.txt", "w") as file:
+        file.write(f"{order_by_maria}\n")
+        file.write(f"{order_by_arnaldo}\n")
+        file.write(f"{never_ordered_by_joao}\n")
+        file.write(f"{days_never_snackBar}\n")
+
+
 def analyze_log(path_to_file):
-    raise NotImplementedError
-    # Parabéns, Mike
+    result = read_file_csv(path_to_file)
+    order_by_maria(result)
+    order_by_arnaldo(result)
+    never_ordered_by_joao(result)
+    days_never_snackBar(result)
+    write_data_file(
+        order_by_maria(result),
+        order_by_arnaldo(result),
+        never_ordered_by_joao(result),
+        days_never_snackBar(result),
+    )
