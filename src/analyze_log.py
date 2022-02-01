@@ -1,5 +1,6 @@
 from csv import reader
 
+
 def maria_most_ordered_dish(data):
     dishes = {}
 
@@ -9,10 +10,10 @@ def maria_most_ordered_dish(data):
                 dishes[dish] = 1
             else:
                 dishes[dish] += 1
-    
-    result = [key for key, value in dishes.items() if value == max(dishes.values())]
+
+    max_value = max(dishes.values())
+    result = [key for key, value in dishes.items() if value == max_value]
     return result[0]
-    ## Ref.: https://pt.stackoverflow.com/questions/475306/como-acessar-a-chave-pelo-valor-em-dicion%C3%A1rio-python
 
 
 def arnaldo_hamburguers_ordered(data):
@@ -20,7 +21,7 @@ def arnaldo_hamburguers_ordered(data):
 
     for person, dish, _day in data:
         if person == "arnaldo" and dish == "hamburguer":
-            count =+ 1
+            count += 1
     return count
 
 
@@ -33,7 +34,7 @@ def dishes_joao_never_ordered(data):
             dishes.add(dish)
         if person == "joao" and dish not in joao_dishes:
             joao_dishes.add(dish)
-    
+
     result = joao_dishes.symmetric_difference(dishes)
     return result
 
@@ -47,9 +48,10 @@ def days_joao_never_came(data):
             weekdays.add(day)
         if person == "joao" and day not in days_joao_went:
             days_joao_went.add(day)
-    
+
     result = days_joao_went.symmetric_difference(weekdays)
     return result
+
 
 def write_data(customer_data):
     with open("data/mkt_campaign.txt", "w") as file:
@@ -62,7 +64,7 @@ def analyze_log(path_to_file):
 
     with open(path_to_file, "r") as file:
         data = list(reader(file))
-    
+
     maria_fav_dish = maria_most_ordered_dish(data)
     arnaldo_hamburguers = arnaldo_hamburguers_ordered(data)
     dishes_joao_never_asked = dishes_joao_never_ordered(data)
@@ -74,5 +76,5 @@ def analyze_log(path_to_file):
         dishes_joao_never_asked,
         joao_missing_days,
     ]
-    
+
     write_data(customer_info)
