@@ -21,8 +21,20 @@ def maria_most_ordered(path_to_file):
     most_ordered = list(Counter(maria_orders)[0])
     return most_ordered
 
+# Quantas vezes Arnaldo pediu Hamburguer
+
+
+def arnaldo_burguers(path_to_file):
+    data = reader(path_to_file)
+    total_hamburguers = int()
+    for index in range(len(data)):
+        if(data[index][0] == 'arnaldo' and data[index][1] == 'hamburguer'):
+            total_hamburguers += 1
+    return total_hamburguers
+
 
 def analyze_log(path_to_file):
     with open('./data/mkt_campaing.txt', mode='w') as file:
         file.write(f'{maria_most_ordered(path_to_file)} \n')
+        file.write(f'{arnaldo_burguers(path_to_file)} \n')
     raise NotImplementedError
