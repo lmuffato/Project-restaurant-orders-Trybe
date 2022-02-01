@@ -57,3 +57,17 @@ def food_never_ordered(customer, orders):
 def write_data(content):
     with open('data/mkt_campaign.txt', 'w') as data:
         data.writelines(content)
+
+
+# função que retorna data em nunca foi feito um pedido
+def never_date(customer, orders):
+    all_dates = set()
+    for order in orders:
+        all_dates.add(order['date'])
+
+    customer_orders_by_date = set()
+    orders_by_custumer = filter(lambda o: o['customer'] == customer, orders)
+    for order in orders_by_custumer:
+        customer_orders_by_date.add(order['date'])
+
+    return all_dates - customer_orders_by_date
