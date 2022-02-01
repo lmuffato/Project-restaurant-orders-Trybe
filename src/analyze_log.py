@@ -51,6 +51,19 @@ def never_ordered_by_joao(tickets):
     return set(not_ticket_food)
 
 
+def days_never_snackBar(tickets):
+    list = []
+    list_day = []
+    for ticket in tickets:
+        if ticket["name"] == "joao" and ticket["week"] not in list:
+            list.append(ticket["week"])
+
+    for ticket in tickets:
+        if ticket["week"] not in list and ticket["week"] not in list_day:
+            list_day.append(ticket["week"])
+    return set(list_day)
+
+
 def analyze_log(path_to_file):
     raise NotImplementedError
     # Parabéns, Mike
