@@ -1,14 +1,12 @@
-from csv import DictReader
+import csv
 from collections import Counter
 
 
 # Função auxiliar
 def reader(path_to_file):
     with open(path_to_file, mode="r") as orders:
-        data = []
-        data_read = DictReader(orders)
-        for order in data_read:
-            data.append(order)
+        data_read = csv.reader(orders)
+        return list(data_read)
 
 
 # mais pedidos de maria
@@ -18,7 +16,7 @@ def maria_most_ordered(path_to_file):
     for index in range(len(data)):
         if data[index][0] == "maria":
             maria_orders.append(data[index][1])
-    most_ordered = list(Counter(maria_orders)[0])
+    most_ordered = list(Counter(maria_orders))[0]
     return most_ordered
 
 
@@ -46,9 +44,21 @@ def dishes_joao_never_ordered(path_to_file):
     return not_ordered_by_joao
 
 
+def days_joao_dont_go_to_restaurant(path_to_file):
+    data = reader(path_to_file)
+    every_day = set()
+    joao_days = set()
+    for index in range(len(data)):
+        every_day.add(data[index][2])
+        if data[index][0] == 'joao':
+            joao_days.add(data[index][2])
+    days_joao_dont_go_to_restaurant = every_day.difference(joao_days)
+    return days_joao_dont_go_to_restaurant
+
+
 def analyze_log(path_to_file):
-    with open("./data/mkt_campaing.txt", mode="w") as file:
+    with open("data/mkt_campaign.txt", mode="w") as file:
         file.write(f"{maria_most_ordered(path_to_file)}\n")
         file.write(f"{arnaldo_burguers(path_to_file)}\n")
         file.write(f"{dishes_joao_never_ordered(path_to_file)}\n")
-    raise NotImplementedError
+        file.write(f"{days_joao_dont_go_to_restaurant(path_to_file)}\n")
