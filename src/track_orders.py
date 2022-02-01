@@ -4,7 +4,9 @@ import src.analyze_log as analize
 
 
 class TrackOrders:
-    orders = []
+
+    def __init__(self):
+        self.orders = []
 
     def __len__(self):
         return len(self.orders)
