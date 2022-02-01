@@ -39,4 +39,3 @@ class TrackOrders:
         days_open_restaurant_set = set(days_open_restaurant)
         custumer_days_been_set = set(custumer_days_been)
         return days_open_restaurant_set.difference(custumer_days_been_set)
-    
