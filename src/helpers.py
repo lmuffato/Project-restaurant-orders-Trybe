@@ -37,3 +37,17 @@ def counter_order(customer, food, orders):
     filter_orders = list(filter(lambda o: o['customer'] == customer
                                   and o['food'] == food, orders))
     return len(filter_orders)
+
+
+# função que retorna qual prato nunca foi pedido
+def food_never_ordered(customer, orders):
+    all_foods = set()
+    for order in orders:
+        all_foods.add(order['food'])
+
+    foods_ordered_by_customer = set()
+    orders_by_custumer = filter(lambda o: o['customer'] == customer, orders)
+    for order in orders_by_custumer:
+        foods_ordered_by_customer.add(order['food'])
+
+    return all_foods - foods_ordered_by_customer
