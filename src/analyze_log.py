@@ -1,4 +1,5 @@
 import csv
+from collections import Counter
 
 
 def read_csv_file(path_to_file):
@@ -16,12 +17,23 @@ def filter_order_by_customer(data, customer):
     return filtered_data
 
 
+def most_ordered_by_customer(data):
+    filtered_data = [item["order"] for item in data]
+    count_order = Counter(filtered_data)
+
+    return count_order.most_common(1)[0][0]
+
+
 def analyze_log(path_to_file):
 
     data_order = read_csv_file(path_to_file)
 
     get_maria_order = filter_order_by_customer(data_order, "maria")
+    most_ordered_by_maria = most_ordered_by_customer(get_maria_order)
 
-    return data_order
+    return most_ordered_by_maria
 
-# Starting the project
+# Aprendi com essa explicação o entendimento da lib Counter:
+# https://stackoverflow.com/questions/3496518/using-a-dictionary-to-count-the-items-in-a-list
+# E sobre o usdo do most_common:
+# https://www.delftstack.com/pt/howto/python/python-counter-most-common/
