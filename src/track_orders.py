@@ -2,7 +2,10 @@ from collections import Counter
 
 
 class TrackOrders:
-    data = []
+    # data = []
+
+    def __init__(self):
+        self.data = []
 
     def __len__(self):
         return len(self.data)
@@ -14,19 +17,19 @@ class TrackOrders:
             "day": day
         })
 
-    def get_most_ordered_dish_per_customer(self, customer):
+    def get_most_ordered_dish_per_costumer(self, customer):
         order_agg = self.aggregate_person_by(customer, 'order')
         return max(
             order_agg,
             key=lambda x: order_agg[x]
         )
 
-    def get_never_ordered_per_customer(self, customer):
+    def get_never_ordered_per_costumer(self, customer):
         customer_orders = set(self.aggregate_person_by(customer, 'order'))
         all_foods = self.get_all_foods()
         return set.difference(all_foods, customer_orders)
 
-    def get_days_never_visited_per_customer(self, customer):
+    def get_days_never_visited_per_costumer(self, customer):
         days_agg = set(self.aggregate_person_by(customer, 'day'))
         all_days = self.get_all_days()
         return set.difference(all_days, days_agg)
@@ -58,11 +61,11 @@ class TrackOrders:
         )
 
     # typos methods
-    def get_most_ordered_dish_per_costumer(self, customer):
-        return self.get_most_ordered_dish_per_customer(customer)
+    # def get_most_ordered_dish_per_costumer(self, customer):
+    #     return self.get_most_ordered_dish_per_customer(customer)
 
-    def get_never_ordered_per_costumer(self, customer):
-        return self.get_never_ordered_per_customer(customer)
+    # def get_never_ordered_per_costumer(self, customer):
+    #     return self.get_never_ordered_per_customer(customer)
 
-    def get_days_never_visited_per_costumer(self, customer):
-        return self.get_days_never_visited_per_customer(customer)
+    # def get_days_never_visited_per_costumer(self, customer):
+    #     return self.get_days_never_visited_per_customer(customer)
