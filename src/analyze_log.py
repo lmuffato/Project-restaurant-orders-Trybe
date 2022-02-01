@@ -45,7 +45,17 @@ def days_customer_never_went(data, customer_filtered):
     return general_order.difference(customer_order)
 
 
+def write_log_file(log_data):
+    path_file = "data/mkt_campaign.txt"
+
+    with open(path_file, "w") as file:
+        for item in log_data:
+            file.write(str(item) + "\n")
+    file.close()
+
+
 def analyze_log(path_to_file):
+    log_data = []
 
     data_order = read_csv_file(path_to_file)
 
@@ -60,8 +70,15 @@ def analyze_log(path_to_file):
         order_never_requested_by_customer(data_order, get_joao_data)
       )
     days_joao_didnt_go = days_customer_never_went(data_order, get_joao_data)
-    print(days_joao_didnt_go)
 
+    log_data.extend([
+      most_ordered_by_maria,
+      ordered_by_arnaldo,
+      ordered_never_requested_by_joao,
+      days_joao_didnt_go
+    ])
+
+    write_log_file(log_data)
 
 # Aprendi com essa explicação o entendimento da lib Counter:
 # https://stackoverflow.com/questions/3496518/using-a-dictionary-to-count-the-items-in-a-list
