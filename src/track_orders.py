@@ -40,7 +40,13 @@ class TrackOrders:
     171e3e2d-770d-4c7f-97fc-f60f2f2cfaa6?use_case=side_bar """
 
     def get_days_never_visited_per_costumer(self, costumer):
-        pass
+        set_day_ordered = set()
+        set_day_never = set()
+        for order in self.orders:
+            if order["name"] == costumer:
+                set_day_ordered.add(order["day"])
+            set_day_never.add(order["day"])
+        return set_day_never.difference(set_day_ordered)
 
     def get_busiest_day(self):
         pass
