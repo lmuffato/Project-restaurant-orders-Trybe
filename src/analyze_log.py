@@ -1,7 +1,19 @@
 from csv import reader
 
 def maria_most_ordered_dish(data):
-    print(data)
+    dishes = {}
+
+    for person, dish, _day in data:
+        if person == "maria":
+            if dish not in dishes:
+                dishes[dish] = 1
+            else:
+                dishes[dish] += 1
+    
+    result = [key for key, value in dishes.items() if value == max(dishes.values())]
+    return result[0]
+
+    ## Ref.: https://pt.stackoverflow.com/questions/475306/como-acessar-a-chave-pelo-valor-em-dicion%C3%A1rio-python
 
 
 def arnaldo_hamburguers_ordered(data):
@@ -18,6 +30,9 @@ def days_joao_never_came(data):
 
 def write_data(customer_data):
     with open("data/mkt_campaign.txt", "w") as file:
+        for row in customer_data:
+            file.write(f"{row}\n")
+
 
 def analyze_log(path_to_file):
     data = []
