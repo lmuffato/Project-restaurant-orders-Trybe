@@ -1,3 +1,6 @@
+from collections import Counter
+
+
 class TrackOrders:
     def __init__(self):
         self.orders = []
@@ -9,7 +12,13 @@ class TrackOrders:
         self.pedidos.append([costumer, order, day])
 
     def get_most_ordered_dish_per_costumer(self, costumer):
-        pass
+        orders_list = self.orders
+        client_orders = []
+        for index in range(len(orders_list)):
+            if orders_list[index][0] == costumer:
+                client_orders.append(orders_list[index][1])
+        total_orders = list(Counter(client_orders))[1]
+        return total_orders
 
     def get_never_ordered_per_costumer(self, costumer):
         pass
