@@ -1,5 +1,9 @@
 from collections import Counter
 
+# https://app.betrybe.com/course/computer-science/programacao-orientada-a-objetos-e-padroes-de-projeto/
+# heranca-composicao-e-interfaces/7c4613cf-5e5d-4a3f-8551-c891a2dee6d5/
+# o-que-vamos-aprender/7282d877-759f-4899-925c-53883983a3f0?use_case=calendar
+
 
 class TrackOrders:
     def __init__(self):

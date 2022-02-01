@@ -1,8 +1,12 @@
 import csv
 from collections import Counter
 
-
+# Referencia: https://app.betrybe.com/course/computer-science
+# /introducao-a-python/aprendendo-python/9c4e1d64-303d-492d-82a4-998b2c0218b9/
+# conteudos/217980af-0946-4b04-9cc4-5846af26ec27/tipos-de-dados-embutidos/bea4b2ef-aece-43fe-9d9d-fa7d8c183088?use_case=side_bar
 # Função auxiliar
+
+
 def reader(path_to_file):
     with open(path_to_file, mode="r") as orders:
         data_read = csv.reader(orders)
