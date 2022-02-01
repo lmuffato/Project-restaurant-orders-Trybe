@@ -12,21 +12,44 @@ def maria_most_ordered_dish(data):
     
     result = [key for key, value in dishes.items() if value == max(dishes.values())]
     return result[0]
-
     ## Ref.: https://pt.stackoverflow.com/questions/475306/como-acessar-a-chave-pelo-valor-em-dicion%C3%A1rio-python
 
 
 def arnaldo_hamburguers_ordered(data):
-    print(data)
+    count = 0
+
+    for person, dish, _day in data:
+        if person == "arnaldo" and dish == "hamburguer":
+            count =+ 1
+    return count
 
 
 def dishes_joao_never_ordered(data):
-    print(data)
+    dishes = set()
+    joao_dishes = set()
+
+    for person, dish, _day in data:
+        if dish not in dishes:
+            dishes.add(dish)
+        if person == "joao" and dish not in joao_dishes:
+            joao_dishes.add(dish)
+    
+    result = joao_dishes.symmetric_difference(dishes)
+    return result
 
 
 def days_joao_never_came(data):
-    print(data)
+    weekdays = set()
+    days_joao_went = set()
 
+    for person, _dish, day in data:
+        if day not in weekdays:
+            weekdays.add(day)
+        if person == "joao" and day not in days_joao_went:
+            days_joao_went.add(day)
+    
+    result = days_joao_went.symmetric_difference(weekdays)
+    return result
 
 def write_data(customer_data):
     with open("data/mkt_campaign.txt", "w") as file:
