@@ -51,3 +51,9 @@ def food_never_ordered(customer, orders):
         foods_ordered_by_customer.add(order['food'])
 
     return all_foods - foods_ordered_by_customer
+
+
+# função para gravar os dados são preenchidos de forma correta no arquivo data/mkt_campaign.txt
+def write_data(content):
+    with open('data/mkt_campaign.txt', 'w') as data:
+        data.writelines(content)
