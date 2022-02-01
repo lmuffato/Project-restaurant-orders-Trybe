@@ -38,6 +38,13 @@ def order_never_requested_by_customer(data, customer_filtered):
     return general_order.difference(customer_order)
 
 
+def days_customer_never_went(data, customer_filtered):
+    general_order = set([item["day"] for item in data])
+    customer_order = set([item["day"] for item in customer_filtered])
+
+    return general_order.difference(customer_order)
+
+
 def analyze_log(path_to_file):
 
     data_order = read_csv_file(path_to_file)
@@ -52,8 +59,8 @@ def analyze_log(path_to_file):
     ordered_never_requested_by_joao = (
         order_never_requested_by_customer(data_order, get_joao_data)
       )
-
-    print(ordered_never_requested_by_joao)
+    days_joao_didnt_go = days_customer_never_went(data_order, get_joao_data)
+    print(days_joao_didnt_go)
 
 
 # Aprendi com essa explicação o entendimento da lib Counter:
