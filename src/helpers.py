@@ -30,3 +30,10 @@ def order_food(customer, orders):
             most_requested_foods = is_food
 
     return most_requested_foods
+
+
+# função que retorna quantas vezes o pedido foi feito por determinado cliente
+def counter_order(customer, food, orders):
+    filter_orders = list(filter(lambda o: o['customer'] == customer
+                                  and o['food'] == food, orders))
+    return len(filter_orders)
