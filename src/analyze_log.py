@@ -19,4 +19,5 @@ def maria_most_ordered(path_to_file):
 
 
 def analyze_log(path_to_file):
-    raise NotImplementedError
+    with open('./data/mkt_campaign.txt', mode='w') as campaign_mkt:
+        campaign_mkt.write(f'{maria_most_ordered(path_to_file)}\n')
