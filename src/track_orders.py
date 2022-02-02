@@ -1,3 +1,6 @@
+from collections import Counter
+
+
 class TrackOrders:
     def __init__(self):
         self.orders = []
@@ -18,7 +21,12 @@ class TrackOrders:
         return filtered_data
 
     def get_most_ordered_dish_per_costumer(self, customer):
-        pass
+        filtered_order = self.get_orders_per_costumer(customer)
+
+        filtered_data = [item["order"] for item in filtered_order]
+        count_order = Counter(filtered_data)
+
+        return count_order.most_common(1)[0][0]
 
     def get_never_ordered_per_costumer(self, customer):
         pass
