@@ -3,17 +3,16 @@ import csv
 
 def read_csv(path):
     result = []
-    if path.endswith(".csv"):
-        with open(path) as file:
-            data_reader = csv.reader(file)
-            for name, food, day in data_reader:
-                result.append(
-                    {
-                        "name": name,
-                        "food": food,
-                        "day": day,
-                    }
-                )
+    with open(path) as file:
+        data_reader = csv.reader(file)
+        for name, food, day in data_reader:
+            result.append(
+                {
+                    "name": name,
+                    "food": food,
+                    "day": day,
+                }
+            )
     return result
 
 
