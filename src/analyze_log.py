@@ -50,4 +50,8 @@ def daysJoao(path_to_file):
 
 
 def analyze_log(path_to_file):
-    raise NotImplementedError
+    with open('./data/mkt_campaign.txt', mode='w') as doc:
+        doc.write(f'{MariaMoreOrders(path_to_file)}\n')
+        doc.write(f'{arnaldosBurguers(path_to_file)}\n')
+        doc.write(f'{JoaosOrders(path_to_file)}\n')
+        doc.write(f'{daysJoao(path_to_file)}\n')
