@@ -34,7 +34,7 @@ class TrackOrders:
 
     def get_days_never_visited_per_costumer(self, costumer):
         cus_order = self.filter_orders(costumer)
-        days_open_restaurant = [single_dict['day'] for single_dict in self.orders]
+        days_open_restaurant = [dict['day'] for dict in self.orders]
         custumer_days_been = [single_dict['day'] for single_dict in cus_order]
         days_open_restaurant_set = set(days_open_restaurant)
         custumer_days_been_set = set(custumer_days_been)
