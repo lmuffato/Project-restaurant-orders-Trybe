@@ -52,4 +52,13 @@ class TrackOrders:
         return count_order.most_common(1)[0][0]
 
     def get_least_busy_day(self):
-        pass
+        general_order = set([item["day"] for item in self.orders])
+
+        count_order = Counter(general_order)
+        order_length = len(count_order)
+
+        return count_order.most_common(order_length)[order_length - 1][0]
+
+# Foi usando o length da order para que se acesse o elemento na última posição,
+# pois tentei procurar algum method contrário do most_common, algo como
+# most_incommon e acabei não encontrando
