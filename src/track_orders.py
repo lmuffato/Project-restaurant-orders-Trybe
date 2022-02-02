@@ -10,6 +10,13 @@ class TrackOrders:
 
         self.orders.append(new_order)
 
+    def get_orders_per_costumer(self, customer):
+        filtered_data = [
+          item for item in self.orders if item["customer"] == customer
+          ]
+
+        return filtered_data
+
     def get_most_ordered_dish_per_costumer(self, customer):
         pass
 
