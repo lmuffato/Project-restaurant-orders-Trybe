@@ -38,5 +38,16 @@ def JoaosOrders(path_to_file):
     return allMenu.difference(orders)
 
 
+def daysJoao(path_to_file):
+    data = read(path_to_file)
+    days = set()
+    allDays = set()
+    for i in range(len(data)):
+        allDays.add(data[i][2])
+        if data[i][0] == 'joao':
+            days.add(data[i][2])
+    return allDays.difference(days)
+
+
 def analyze_log(path_to_file):
     raise NotImplementedError
