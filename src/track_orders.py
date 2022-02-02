@@ -1,9 +1,9 @@
 class TrackOrders:
-    def __len__(self):
-        return len(self.orders)
-
     def __init__(self):
         self.orders = []
+
+    def __len__(self):
+        return len(self.orders)
 
     def add_new_order(self, costumer, order, day):
         return self.orders.append(
