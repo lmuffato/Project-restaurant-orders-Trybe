@@ -7,8 +7,7 @@ def reade_file_csv(path):
         return [(cust, order, day) for cust, order, day in data]
 
 
-def get_order_max_purchased(path, person):
-    data = reade_file_csv(path)
+def get_order_max_purchased(data, person):
     food_init = data[0][1]
     list = {}
     for cust, order, day in data:
@@ -21,10 +20,10 @@ def get_order_max_purchased(path, person):
             food_init = order
 
     return food_init
+    # return max(list, key=list.get)
 
 
-def get_order_quantity(path, person, food):
-    data = reade_file_csv(path)
+def get_order_quantity(data, person, food):
     list = {}
     for cust, order, day in data:
         if cust == person and order not in list:
@@ -38,9 +37,7 @@ def get_order_quantity(path, person, food):
     return list[food]
 
 
-def get_order_never_costumer(path, person):
-    data = reade_file_csv(path)
-
+def get_order_never_costumer(data, person):
     list = set()
     list_order_person = set()
 
@@ -52,9 +49,7 @@ def get_order_never_costumer(path, person):
     return list.difference(list_order_person)
 
 
-def get_days_never_costumer(path, person):
-    data = reade_file_csv(path)
-
+def get_days_never_costumer(data, person):
     list_days = set()
     list_days_person = set()
 
@@ -66,10 +61,11 @@ def get_days_never_costumer(path, person):
 
 
 def analyze_log(path_to_file):
-    order_max_purchased = get_order_max_purchased(path_to_file, 'maria'),
-    order_quantity = get_order_quantity(path_to_file, 'arnaldo', 'hamburguer'),
-    order_never_costumer = get_order_never_costumer(path_to_file, 'joao'),
-    days_never_costumer = get_days_never_costumer(path_to_file, 'joao')
+    data = reade_file_csv(path_to_file)
+    order_max_purchased = get_order_max_purchased(data, 'maria'),
+    order_quantity = get_order_quantity(data, 'arnaldo', 'hamburguer'),
+    order_never_costumer = get_order_never_costumer(data, 'joao'),
+    days_never_costumer = get_days_never_costumer(data, 'joao')
     with open('data/mkt_campaign.txt', 'w') as file:
         file.writelines([
             f'{order_max_purchased[0]}\n',
