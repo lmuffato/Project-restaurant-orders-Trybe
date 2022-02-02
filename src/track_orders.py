@@ -45,20 +45,37 @@ class TrackOrders:
         return general_order.difference(customer_order)
 
     def get_busiest_day(self):
-        general_order = set([item["day"] for item in self.orders])
+        day_order = self.orders[0]["day"]
+        count_order = {}
 
-        count_order = Counter(general_order)
+        for item in self.orders:
+            if item["day"] not in count_order:
+                count_order[item["day"]] = 1
+            else:
+                count_order[item["day"]] += 1
 
-        return count_order.most_common(1)[0][0]
+            if count_order[item["day"]] > count_order[day_order]:
+                day_order = item["day"]
+
+        return day_order
 
     def get_least_busy_day(self):
-        general_order = set([item["day"] for item in self.orders])
+        day_order = self.orders[0]["day"]
+        count_order = {}
 
-        count_order = Counter(general_order)
-        order_length = len(count_order)
+        for item in self.orders:
+            if item["day"] not in count_order:
+                count_order[item["day"]] = 1
+            else:
+                count_order[item["day"]] += 1
 
-        return count_order.most_common(order_length)[order_length - 1][0]
+            if count_order[item["day"]] < count_order[day_order]:
+                day_order = item["day"]
 
-# Foi usando o length da order para que se acesse o elemento na última posição,
-# pois tentei procurar algum method contrário do most_common, algo como
-# most_incommon e acabei não encontrando
+        return day_order
+
+# Os últimos methods foram refatorados usando de base o exercício 6 de
+# fixação do bloco 36.3, onde ele mostra o uso de um contador manual.
+
+# Obs: tive que refatorar e deixar o uso do Count de lado, pois
+# os requisitos passavam x vezes sim e outras falhavam.
