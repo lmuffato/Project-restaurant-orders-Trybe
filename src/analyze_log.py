@@ -28,7 +28,10 @@ def most_ordered(person, file):
 
 def qty_order_client(order, client, file):
     orders_db = read_csv(file)
-    return len([sale[1] for sale in orders_db if client == sale[0] and order == sale[1]])
+    return len([sale[1] for sale in orders_db
+        if client == sale[0] and
+        order == sale[1]]
+    )
 
 
 def never_ordered_client(client, file):
@@ -41,9 +44,10 @@ def never_ordered_client(client, file):
 def never_showUp_client(client, file):
     orders_db = read_csv(file)
     days_of_week = set([order[2] for order in orders_db])
-    client_weekDay = set([order[2] for order in orders_db if order[0] == client])
+    client_weekDay = set(
+        [order[2] for order in orders_db if order[0] == client]
+    )
     return(days_of_week - client_weekDay)
-
 
 
 def analyze_log(path_to_file):
