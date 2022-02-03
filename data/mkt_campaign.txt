@@ -1,2 +1,3 @@
 hamburguer
 1
+{'coxinha', 'pizza', 'misto-quente'}
