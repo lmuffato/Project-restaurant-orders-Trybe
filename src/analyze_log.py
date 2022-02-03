@@ -39,13 +39,12 @@ def arnaldo_hamburger_count(path):
     return counter
 
 
-def joao_never_requested(path):
-    data_reader = read_csv(path)
+def food_never_requested(data, costumer):
     requested_foods = set()
-    for i in data_reader:
-        if i["name"] == "joao":
+    for i in data:
+        if i["name"] == costumer:
             requested_foods.add(i["food"])
-    all_foods = set([i["food"] for i in data_reader])
+    all_foods = set([i["food"] for i in data])
     not_requested = all_foods.difference(requested_foods)
     return not_requested
 
@@ -69,7 +68,7 @@ def analyze_log(path_to_file):
     data = read_csv(path_to_file)
     favorite_food = prato_mais_pedido(data, "maria")
     arnaldo_pedido = arnaldo_hamburger_count(path_to_file)
-    joao_nao_pediu = joao_never_requested(path_to_file)
+    joao_nao_pediu = food_never_requested(data, "joao")
     joao_nao_veio = joao_days_of(path_to_file)
     text = (
         f"{favorite_food}\n"
