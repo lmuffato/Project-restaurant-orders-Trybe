@@ -37,6 +37,14 @@ def arnaldo_burguer(data):
     return orders
 
 
+# Quais pratos 'joao' nunca pediu?
+def not_asked(data):
+    orders = set()
+    for order in data:
+        if order["name"] == "joao":
+            orders.add(order["food"])
+
+
 def txt(text, txt_file):
     with open(txt, "w") as file:
         file.write(text)
