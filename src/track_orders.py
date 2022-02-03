@@ -9,7 +9,7 @@ class TrackOrders:
 
     def __len__(self):
         return self.len
-        
+
     def compare_days(self, result_day):
         listaDeDias = []
         for requsicao in self.orders:
@@ -33,7 +33,6 @@ class TrackOrders:
 
     def get_days_never_visited_per_costumer(self, costumer):
         return contadorNegativo(self, 'day', costumer)
-
 
     def get_busiest_day(self):
         return self.compare_days('best')
