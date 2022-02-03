@@ -17,7 +17,16 @@ def maria_fav_food(orders):
     return fav_food
 
 
-def analyze_log(path_to_file):
+def arnaldo_hamburguer_counter(orders, meal):
+    counter = 0
+    for order in orders:
+        if order[0] == meal:
+            counter += 1
+    print('Arnaldo pediu hamburguer:', counter)
+    return counter
+
+
+def csv_reader(path_to_file):
     orders = {}
     with open(path_to_file) as file:
         # Fonte: https://docs.python.org/3/library/csv.html
@@ -27,5 +36,28 @@ def analyze_log(path_to_file):
                 orders[row[0]] = [[row[1], row[2]]]
             else:
                 orders[row[0]].append([row[1], row[2]])
+    return orders
 
-    print(maria_fav_food(orders['maria']))
+
+def analyze_log(path_to_file):
+    orders = csv_reader(path_to_file)
+
+    # Verfifica comida mais pedida de Maria
+    maria_fav_meal = maria_fav_food(orders["maria"])
+
+    # Verifica quantidade de vezes que arnaldo pediu hamburguer
+    arnaldo_burguer_counter = arnaldo_hamburguer_counter(
+        orders["arnaldo"], "hamburguer"
+    )
+
+    content = [
+        maria_fav_meal,
+        arnaldo_burguer_counter,
+    ]
+
+    with open("data/mkt_campaign.txt", "w") as file:
+        for data in content:
+            file.write(f"{str(data)}\n")
+
+
+analyze_log("data/orders_1.csv")
