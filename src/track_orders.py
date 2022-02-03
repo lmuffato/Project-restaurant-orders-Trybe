@@ -1,6 +1,7 @@
 from src.analyze_log import mariaPedidos, contadorNegativo
 from typing import Counter
 
+
 class TrackOrders:
     def __init__(self) -> None:
         self.len = 0
@@ -18,16 +19,23 @@ class TrackOrders:
 
     def get_never_ordered_per_costumer(self, costumer):
         return contadorNegativo(self.orders, 'plate', costumer)
-   
+
     def get_days_never_visited_per_costumer(self, costumer):
         return contadorNegativo(self, 'day', costumer)
 
+    def compare_days(self, result_day):
+        listaDeDias = []
+        for requsicao in self.orders:
+            listaDeDias.append(requsicao[2])
+        resposta = Counter(listaDeDias).most_common(1)
+
+        if(result_day == 'poor'):
+            resposta = Counter(listaDeDias).most_common()
+            return resposta[-1][0]
+        return resposta[-1][0]
+
     def get_busiest_day(self):
-        list_days = []
-        for request in self.orders:
-            list_days.append(request[2])
-        result = Counter(list_days).most_common(1)
-        return result[0][0]
+        return self.compare_days('best')
 
     def get_least_busy_day(self):
-        pass
+        return self.compare_days('poor')
