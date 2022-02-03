@@ -45,7 +45,10 @@ def not_ordered(data):
             orders.add(order["food"])
     ordered_food = set([order["food"] for i in data])
     not_ordered_food = ordered_food.difference(orders)
-    # Difference retorna um set novo com os itens que somente tem no primeiro set. Src =https://www.w3schools.com/python/ref_set_difference.asp#:~:text=The%20difference()%20method%20returns,and%20not%20in%20both%20sets.  
+    # Difference retorna um set novo com os itens
+    # que somente tem no primeiro set.
+    # Src =
+    # https://www.w3schools.com/python/ref_set_difference.asp#:~:text=The%20difference()%20method%20returns,and%20not%20in%20both%20sets.
     return not_ordered_food
 
 
