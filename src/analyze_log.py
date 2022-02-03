@@ -38,8 +38,20 @@ def joao_never_asked(path_to_file):
     return all_orders.difference(joao_orders)
 
 
+def days_joao_didnt_go(path_to_file):
+    data = reader_CSV(path_to_file)
+    days_joao_went = set()
+    full_days = set()
+    for i in range(len(data)):
+        full_days.add(data[i][2])
+        if data[i][0] == 'joao':
+            days_joao_went.add(data[i][2])
+    return full_days.difference(days_joao_went)
+
+
 def analyze_log(path_to_file):
     with open('./data/mkt_campaign.txt', mode='w') as info_list:
         info_list.write(f'{maria_orders(path_to_file)}\n')
         info_list.write(f'{arnaldo_orders(path_to_file)}\n')
         info_list.write(f'{joao_never_asked(path_to_file)}\n')
+        info_list.write(f'{days_joao_didnt_go(path_to_file)}\n')
