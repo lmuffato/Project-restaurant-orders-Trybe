@@ -10,7 +10,7 @@ class TrackOrders:
 
     def add_new_order(self, costumer, order, day):
         self.order.append({"costumer": costumer, "order": order, "day": day})
-        print(self.order)
+        return self.order
 
     def get_most_ordered_dish_per_costumer(self, costumer):
         list_costumer = []
@@ -22,10 +22,24 @@ class TrackOrders:
         return result[0][0]
 
     def get_never_ordered_per_costumer(self, costumer):
-        pass
+        list_costumer = set()
+        list_all_dishes = set()
+        for item_list in self.order:
+            list_all_dishes.add(item_list["order"])
+            if item_list["costumer"] == costumer:
+                list_costumer.add(item_list["order"])
+        result = list_all_dishes - list_costumer
+        return result
 
     def get_days_never_visited_per_costumer(self, costumer):
-        pass
+        list_costumer = set()
+        list_all_days = set()
+        for item_list in self.order:
+            list_all_days.add(item_list["day"])
+            if item_list["costumer"] == costumer:
+                list_costumer.add(item_list["day"])
+        result = list_all_days - list_costumer
+        return result
 
     def get_busiest_day(self):
         pass

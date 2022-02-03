@@ -11,6 +11,6 @@ def readFile(path_to_file):
 
 
 def readWrite(list_data):
-    path_to_file = "../data/mkt_campaign.txt"
+    path_to_file = "./data/mkt_campaign.txt"
     with open(path_to_file, "a") as file:
         file.write(f"{list_data}\n")
