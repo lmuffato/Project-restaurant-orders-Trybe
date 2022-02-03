@@ -1,6 +1,6 @@
 class TrackOrders:
     def __len__(self):
-        pass
+        pass  # Lets goooooooo! go!go!go!go!go!go!go!
 
     def add_new_order(self, costumer, order, day):
         pass
