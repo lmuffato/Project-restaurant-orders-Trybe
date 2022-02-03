@@ -10,6 +10,12 @@ class TrackOrders:
             {"cliente": costumer, "pedido": order, "dia": day}
         )
 
+    def products_list(self):
+        result = []
+        for row in self.orders:
+            result.append(row["pedido"])
+        return set(result)
+
     def get_orders_per_costumer(self, costumer):
         filtered_orders = []
         for order in self.orders:
@@ -28,7 +34,10 @@ class TrackOrders:
         return max(most_ordered_dish, key=most_ordered_dish.get)
 
     def get_never_ordered_per_costumer(self, costumer):
-        pass
+        lista_produtos = self.products_list()
+        lista_pedidos = self.get_orders_per_costumer(costumer)
+        lista_pedidos = [order["pedido"] for order in lista_pedidos]
+        return lista_produtos.difference(lista_pedidos)
 
     def get_days_never_visited_per_costumer(self, costumer):
         pass
@@ -52,5 +61,11 @@ print(teste.__len__())
 print('===== FILTRA AS ORDERNS POR CLIENTE =====')
 print(teste.get_orders_per_costumer("madruga"))
 
-print('===== FILTRA A COMIDA MAIS PEDIDA POR CLIENTE =====')
+print('===== COMIDA MAIS PEDIDA DO MADRUGA =====')
 print(teste.get_most_ordered_dish_per_costumer("madruga"))
+
+print('===== LISTA DE PRODUTOS =====')
+print(teste.products_list())
+
+print('===== PRODUTOS QUE O MADRUGA NUNCA PEDIU =====')
+print(teste.get_never_ordered_per_costumer("madruga"))
