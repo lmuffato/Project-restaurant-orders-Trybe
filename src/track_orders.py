@@ -19,7 +19,18 @@ class TrackOrders:
         pass
 
     def get_busiest_day(self):
-        pass
+        result = self.orders[0][2]
+        busy_days = {}
+
+        for item in self.orders:
+            day = item[2]
+            if day not in busy_days:
+                busy_days[day] = 1
+            else:
+                busy_days[day] += 1
+            if busy_days[result] < busy_days[day]:
+                result = day
+        return result
 
     def get_least_busy_day(self):
         result = self.orders[0][2]
