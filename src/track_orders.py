@@ -9,14 +9,10 @@ class TrackOrders:
         pass
 
     def add_new_order(self, costumer, order, day):
-        self.orders.append({
-            "name": costumer,
-            "food": order,
-            "day": day
-        })
+        self.orders.append({"name": costumer, "food": order, "day": day})
 
     def get_most_ordered_dish_per_costumer(self, costumer):
-        return prato_mais_pedido(self.orders,costumer)
+        return prato_mais_pedido(self.orders, costumer)
 
     def get_never_ordered_per_costumer(self, costumer):
         pass

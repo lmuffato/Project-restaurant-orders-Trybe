@@ -60,7 +60,7 @@ def joao_days_of(path):
     return all_days.difference(joao_days_on)
 
 
-def write_in_txt(text, txt_file):    
+def write_in_txt(text, txt_file):
     with open(txt_file, "w") as file:
         file.write(text)
 
