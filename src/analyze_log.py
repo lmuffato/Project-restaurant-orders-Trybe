@@ -10,7 +10,6 @@ from src.filter_function import (
 def analyze_log(path_to_file):
     # raise NotImplementedError
     list_data = readFile(path_to_file)
-    print(list_data)
 
     top_dishes(list_data)
     count_hamburger(list_data)
