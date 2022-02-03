@@ -17,8 +17,8 @@ class TrackOrders:
         for item_list in self.order:
             if item_list["costumer"] == costumer:
                 list_costumer.append(item_list["order"])
-                dict_pop = Counter(list_costumer)
-                result = dict_pop.most_common(1)
+                dict_count = Counter(list_costumer)
+                result = dict_count.most_common(1)
         return result[0][0]
 
     def get_never_ordered_per_costumer(self, costumer):
@@ -42,7 +42,18 @@ class TrackOrders:
         return result
 
     def get_busiest_day(self):
-        pass
+        list_days = []
+        for item_list in self.order:
+            list_days.append(item_list["day"])
+            dict_count = Counter(list_days)
+            result = dict_count.most_common(1)
+        return result[0][0]
 
     def get_least_busy_day(self):
-        pass
+        list_days = []
+        for item_list in self.order:
+            list_days.append(item_list["day"])
+            dict_count = Counter(list_days)
+            len(dict_count)
+            result = dict_count.most_common()
+        return result[len(dict_count) - 1][0]
