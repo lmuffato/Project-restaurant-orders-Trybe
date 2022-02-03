@@ -20,7 +20,9 @@ class TrackOrders:
         return(Counter(client_orders).most_common()[0][0])
 
     def get_never_ordered_per_costumer(self, costumer):
-        pass
+        all_dishes = set([order[1] for order in self.orders])
+        client_dishes = set([order[1] for order in self.orders if costumer == order[0]])
+        return all_dishes - client_dishes
 
     def get_days_never_visited_per_costumer(self, costumer):
         pass
