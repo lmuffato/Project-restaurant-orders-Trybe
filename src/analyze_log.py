@@ -19,12 +19,12 @@ def testeStr(path):
     return requisicoes
 
 
-def mariaPedidos(path):
+def mariaPedidos(path, cliente):
     listaDerequisicoes = []
     testeString = testeStr(path)
 
     for requisicao in testeString:
-        if(requisicao[0] == 'maria'):
+        if(requisicao[0] == cliente):
             listaDerequisicoes.append(requisicao[1])
     resposta = Counter(listaDerequisicoes).most_common(1)
     return resposta[0][0]
@@ -70,3 +70,4 @@ def analyze_log(caminho):
         maisPedidos, quantHanburgue, contadorNeg, diasFechados
     ))
     file.close
+   
