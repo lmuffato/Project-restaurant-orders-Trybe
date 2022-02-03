@@ -1,12 +1,12 @@
 class TrackOrders:
     def __init__(self):
-        self.order = []
+        self.orders = []
 
     def __len__(self):
-        return len(self.order)
+        return len(self.orders)
 
     def add_new_order(self, costumer, order, day):
-        pass
+        return self.orders.append([costumer, order, day])
 
     def get_most_ordered_dish_per_costumer(self, costumer):
         pass
