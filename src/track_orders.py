@@ -9,6 +9,17 @@ class TrackOrders:
 
     def __len__(self):
         return self.len
+        
+    def compare_days(self, result_day):
+        listaDeDias = []
+        for requsicao in self.orders:
+            listaDeDias.append(requsicao[2])
+        resposta = Counter(listaDeDias).most_common(1)
+
+        if(result_day == 'poor'):
+            resposta = Counter(listaDeDias).most_common()
+            return resposta[-1][0]
+        return resposta[-1][0]
 
     def add_new_order(self, costumer, order, day):
         self.orders.append([costumer, order, day])
@@ -23,16 +34,6 @@ class TrackOrders:
     def get_days_never_visited_per_costumer(self, costumer):
         return contadorNegativo(self, 'day', costumer)
 
-    def compare_days(self, result_day):
-        listaDeDias = []
-        for requsicao in self.orders:
-            listaDeDias.append(requsicao[2])
-        resposta = Counter(listaDeDias).most_common(1)
-
-        if(result_day == 'poor'):
-            resposta = Counter(listaDeDias).most_common()
-            return resposta[-1][0]
-        return resposta[-1][0]
 
     def get_busiest_day(self):
         return self.compare_days('best')

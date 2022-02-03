@@ -40,7 +40,7 @@ def quantHanburgueArnaldo(caminho):
     return contador
 
 
-def contadorNegativo(caminho, type):
+def contadorNegativo(caminho, type, cliente):
     typeIndex = 0
     joaoItens = set()
     listItens = set()
@@ -53,7 +53,7 @@ def contadorNegativo(caminho, type):
 
     for requisicao in testeString:
         listItens.add(requisicao[typeIndex])
-        if(requisicao[0] == 'joao'):
+        if(requisicao[0] == cliente):
             joaoItens.add(requisicao[typeIndex])
     resposta = listItens.difference(joaoItens)
     return resposta
