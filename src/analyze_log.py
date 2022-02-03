@@ -70,4 +70,3 @@ def analyze_log(caminho):
         maisPedidos, quantHanburgue, contadorNeg, diasFechados
     ))
     file.close
-   
