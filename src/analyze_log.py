@@ -59,3 +59,5 @@ def analyze_log(path_to_file):
     print(hamburguer_arnaldo, file=file)
     print(not_requested_from_joao, file=file)
     print(off_days_joao, file=file)
+
+    file.close()
