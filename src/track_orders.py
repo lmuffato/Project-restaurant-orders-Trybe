@@ -20,7 +20,7 @@ class TrackOrders:
         return contadorNegativo(self.orders, 'plate', costumer)
    
     def get_days_never_visited_per_costumer(self, costumer):
-        pass
+        return contadorNegativo(self, 'day', costumer)
 
     def get_busiest_day(self):
         pass
