@@ -12,7 +12,13 @@ class TrackOrders:
         self.orders.append([costumer, order, day])
 
     def get_most_ordered_dish_per_costumer(self, costumer):
-        pass
+        orderList = self.orders
+        clientOrder = []
+        for i in range(len(orderList)):
+            if orderList[i][0] == costumer:
+                clientOrder.append(orderList[i][1])
+        return list(Counter(clientOrder))[1]
+
 
     def get_never_ordered_per_costumer(self, costumer):
         pass
