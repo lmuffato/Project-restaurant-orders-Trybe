@@ -21,19 +21,24 @@ class TrackOrders:
         return collections.Counter(orders).most_common(1)[0][0]
         # https://www.kite.com/python/docs/collections.Counter.most_common
 
+    # Requisitos abaixo feitos com consulta ao PR da Elisa França
     def get_never_ordered_per_costumer(self, costumer):
+        ordered_foods = set()
+        no_ordered_foods = set()
         for item in self.orders:
             if item["costumer"] == costumer:
-                ordered_foods = set(item["order"])
-                never_ordered_foods = set(item["order"])
-        return never_ordered_foods.difference(ordered_foods)
+                ordered_foods.add(item["order"])
+            no_ordered_foods.add(item["order"])
+        return no_ordered_foods.difference(ordered_foods)
 
     def get_days_never_visited_per_costumer(self, costumer):
+        ordered_days = set()
+        no_ordered_days = set()
         for item in self.orders:
             if item["costumer"] == costumer:
-                days_visited = set(item["day"])
-                days_never_visited = set(item["day"])
-        return days_never_visited.difference(days_visited)
+                ordered_days.add(item["order"])
+            no_ordered_days.add(item["order"])
+        return no_ordered_days.difference(ordered_days)
 
     def get_busiest_day(self):
         pass
