@@ -1,3 +1,5 @@
+# Requisito 2 feito com ajuda do Jodiel
+
 class TrackOrders:
 
     def __init__(self):
@@ -33,8 +35,18 @@ class TrackOrders:
     def get_never_ordered_per_costumer(self, costumer):
         pass
 
+# uso do add - https://www.geeksforgeeks.org/set-add-python/
+
     def get_days_never_visited_per_costumer(self, costumer):
-        pass
+        days_of_the_week = set()
+        visited_days = set()
+        for item in self.orders:
+            day = item[2]
+            client = item[0]
+            days_of_the_week.add(day)
+            if client == costumer:
+                visited_days.add(day)
+        return days_of_the_week.difference(visited_days)
 
     def get_busiest_day(self):
         result = self.orders[0][2]
