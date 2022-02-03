@@ -1,6 +1,8 @@
 from .analyze_log import (
     get_requests,
     menu,
+    get_days,
+    days
 )
 
 
@@ -33,7 +35,10 @@ class TrackOrders:
         return never_ordered
 
     def get_days_never_visited_per_costumer(self, costumer):
-        pass
+        sorted_days = set(get_days(self.orders, costumer))
+        days_off = sorted_days.symmetric_difference(days)
+
+        return days_off
 
     def get_busiest_day(self):
         pass
