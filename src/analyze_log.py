@@ -2,9 +2,10 @@ from functools import lru_cache
 from typing import Counter
 import csv
 
+
 @lru_cache
 def leitura(caminho):
-    with open(caminho) as file: 
+    with open(caminho) as file:
         requisicoes = csv.reader(file, limit=',')
         return [rows for rows in requisicoes]
 

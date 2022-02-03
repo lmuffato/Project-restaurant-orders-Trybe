@@ -14,7 +14,7 @@ class InventoryControl:
         'massa': 50,
         'frango': 50,
     }
-    # Eu sou Barril dobrado + BA
+
     def __init__(self):
         pass
 
