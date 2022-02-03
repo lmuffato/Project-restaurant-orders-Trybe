@@ -1,5 +1,5 @@
 from src.analyze_log import mariaPedidos, contadorNegativo
-
+from typing import Counter
 
 class TrackOrders:
     def __init__(self) -> None:
@@ -23,7 +23,11 @@ class TrackOrders:
         return contadorNegativo(self, 'day', costumer)
 
     def get_busiest_day(self):
-        pass
+        list_days = []
+        for request in self.orders:
+            list_days.append(request[2])
+        result = Counter(list_days).most_common(1)
+        return result[0][0]
 
     def get_least_busy_day(self):
         pass
