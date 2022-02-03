@@ -39,17 +39,17 @@ def arnaldo_burguer(data):
 
 # Quais pratos 'joao' nunca pediu?
 def not_ordered(data):
-    orders = set()
+    ordered_food = set()
     for order in data:
         if order["name"] == "joao":
-            orders.add(order["food"])
-    ordered_food = set([order["food"] for i in data])
-    not_ordered_food = ordered_food.difference(orders)
+            ordered_food.add(order["food"])
+    all_orders = set([i["food"] for i in data])
+    not_ordered = all_orders.difference(ordered_food)
     # Difference retorna um set novo com os itens
     # que somente tem no primeiro set.
     # Src =
     # https://www.w3schools.com/python/ref_set_difference.asp#:~:text=The%20difference()%20method%20returns,and%20not%20in%20both%20sets.
-    return not_ordered_food
+    return not_ordered
 
 
 # Quais dias 'joao' nunca foi na lanchonete?

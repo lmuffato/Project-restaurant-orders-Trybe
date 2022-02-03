@@ -1,2 +1,4 @@
 hamburguer
-1set(){'sabado', 'segunda-feira'}
+1
+{'coxinha', 'pizza', 'misto-quente'}
+{'sabado', 'segunda-feira'}
