@@ -1,3 +1,6 @@
+# Usei algumas dicas do Victor Canto e estudei bastante a sua PR
+# para desenvolver alguns requisitos
+
 class TrackOrders:
     def __init__(self):
         self.qtd_orders = 0
