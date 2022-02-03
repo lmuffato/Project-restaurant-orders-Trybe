@@ -6,7 +6,7 @@ import csv
 @lru_cache
 def leitura(caminho):
     with open(caminho) as file:
-        requisicoes = csv.reader(file, limit=',')
+        requisicoes = csv.reader(file, delimiter=',')
         return [rows for rows in requisicoes]
 
 
@@ -69,3 +69,4 @@ def analyze_log(caminho):
     file.writelines('{}\n{}\n{}\n{}\n'.format(
         maisPedidos, quantHanburgue, contadorNeg, diasFechados
     ))
+    file.close
