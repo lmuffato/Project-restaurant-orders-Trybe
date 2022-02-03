@@ -16,6 +16,12 @@ class TrackOrders:
             result.append(row["pedido"])
         return set(result)
 
+    def get_all_days(self):
+        result = []
+        for order in self.orders:
+            result.append(order["dia"]) 
+        return set(result)
+
     def get_orders_per_costumer(self, costumer):
         filtered_orders = []
         for order in self.orders:
@@ -40,7 +46,10 @@ class TrackOrders:
         return lista_produtos.difference(lista_pedidos)
 
     def get_days_never_visited_per_costumer(self, costumer):
-        pass
+        all_days = self.get_all_days()
+        lista_pedidos = self.get_orders_per_costumer(costumer)
+        lista_pedidos = [order["dia"] for order in lista_pedidos]
+        return all_days.difference(lista_pedidos)
 
     def get_busiest_day(self):
         pass
@@ -69,3 +78,9 @@ print(teste.products_list())
 
 print('===== PRODUTOS QUE O MADRUGA NUNCA PEDIU =====')
 print(teste.get_never_ordered_per_costumer("madruga"))
+
+print('===== LISTA DE DIAS =====')
+print(teste.get_all_days())
+
+print('===== DIAS QUE O MADRUGA NUNCA VISITOU =====')
+print(teste.get_days_never_visited_per_costumer("madruga"))
