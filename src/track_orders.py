@@ -36,8 +36,8 @@ class TrackOrders:
         no_ordered_days = set()
         for item in self.orders:
             if item["costumer"] == costumer:
-                ordered_days.add(item["order"])
-            no_ordered_days.add(item["order"])
+                ordered_days.add(item["day"])
+            no_ordered_days.add(item["day"])
         return no_ordered_days.difference(ordered_days)
 
     def get_busiest_day(self):
