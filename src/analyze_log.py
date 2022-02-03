@@ -15,6 +15,3 @@ def analyze_log(path_to_file):
     count_hamburger(list_data)
     dishes_not_joao(list_data)
     joao_is_absent(list_data)
-
-
-# print(analyze_log("../data/orders_1.csv"))
