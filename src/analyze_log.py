@@ -29,5 +29,15 @@ def mariaPedidos(path):
     return resposta[0][0]
 
 
+def quantHanburgueArnaldo(caminho):
+    contador = 0
+    testeString = testeStr(caminho)
+
+    for requisicao in testeString:
+        if(requisicao[0] == 'arnaldo' and requisicao[1] == 'hamburguer'):
+            contador += 1
+    return contador
+    
+
 def analyze_log(path_to_file):
     raise NotImplementedError
