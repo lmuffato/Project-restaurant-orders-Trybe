@@ -52,8 +52,18 @@ def not_ordered(data):
     return not_ordered_food
 
 
+# Quais dias 'joao' nunca foi na lanchonete?
+def not_visited(data):
+    visited_days = set([day["day"] for day in data])
+    joao_log = set()
+    for date in data:
+        if date["name"] == "joao":
+            joao_log.add(date["day"])
+    return visited_days.difference(joao_log)
+
+
 def txt(text, txt_file):
-    with open(txt, "w") as file:
+    with open(txt_file, "w") as file:
         file.write(text)
 
 
@@ -63,10 +73,12 @@ def analyze_log(path_to_file):
     maria_fav = maria_fav_food(data, "maria")
     arnaldo_orders = arnaldo_burguer(data)
     joao_not_ordered = not_ordered(data)
+    joao_not_visited = not_visited(data)
 
     result = (
         f"{maria_fav}\n"
         + f"{arnaldo_orders}"
         + f"{joao_not_ordered}"
+        + f"{joao_not_visited}"
     )
     txt(result, "data/mkt_campaign.txt")
