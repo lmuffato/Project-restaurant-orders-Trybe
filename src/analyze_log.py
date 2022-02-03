@@ -19,12 +19,12 @@ def read_csv_file(path):
     return data
 
 
-def get_requests(list, name):
+def get_requests(orders, name):
     requests = []
 
-    for item in range(len(list)):
-        if list[item][0] == name:
-            requests.append(list[item][1])
+    for item in range(len(orders)):
+        if orders[item][0] == name:
+            requests.append(orders[item][1])
 
     return Counter(requests)
 

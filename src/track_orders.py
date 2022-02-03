@@ -1,3 +1,6 @@
+from .analyze_log import get_requests
+
+
 class TrackOrders:
     def __init__(self):
         self.orders = []
@@ -6,16 +9,18 @@ class TrackOrders:
         return len(self.orders)
 
     def add_new_order(self, costumer, order, day):
-        order = {
+        order = (
             costumer,
             order,
             day,
-        }
+        )
 
         self.orders.append(order)
 
     def get_most_ordered_dish_per_costumer(self, costumer):
-        pass
+        sorted_orders = get_requests(self.orders, costumer)
+        most_ordered = max(sorted_orders, key=sorted_orders.get)
+        return most_ordered
 
     def get_never_ordered_per_costumer(self, costumer):
         pass
