@@ -37,7 +37,34 @@ def quantHanburgueArnaldo(caminho):
         if(requisicao[0] == 'arnaldo' and requisicao[1] == 'hamburguer'):
             contador += 1
     return contador
-    
 
-def analyze_log(path_to_file):
-    raise NotImplementedError
+
+def contadorNegativo(caminho, type):
+    typeIndex = 0
+    joaoItens = set()
+    listItens = set()
+    testeString = testeStr(caminho)
+
+    if(type == 'plate'):
+        typeIndex = 1
+    if(type == 'day'):
+        typeIndex = 2
+
+    for requisicao in testeString:
+        listItens.add(requisicao[typeIndex])
+        if(requisicao[0] == 'joao'):
+            joaoItens.add(requisicao[typeIndex])
+    resposta = listItens.difference(joaoItens)
+    return resposta
+
+
+def analyze_log(caminho):
+    maisPedidos = mariaPedidos(caminho)
+    quantHanburgue = quantHanburgueArnaldo(caminho)
+    contadorNeg = contadorNegativo(caminho, 'plate')
+    diasFechados = contadorNegativo(caminho, 'day')
+
+    file = open('data/mkt_campaign.txt', mode='w')
+    file.writelines('{}\n{}\n{}\n{}\n'.format(
+        maisPedidos, quantHanburgue, contadorNeg, diasFechados
+    ))
