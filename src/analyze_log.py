@@ -1,5 +1,4 @@
 import csv
-import dataclasses
 
 
 def convert_log(path):
