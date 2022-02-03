@@ -77,8 +77,8 @@ def analyze_log(path_to_file):
 
     result = (
         f"{maria_fav}\n"
-        + f"{arnaldo_orders}"
-        + f"{joao_not_ordered}"
-        + f"{joao_not_visited}"
+        + f"{arnaldo_orders}\n"
+        + f"{joao_not_ordered}\n"
+        + f"{joao_not_visited}\n"
     )
     txt(result, "data/mkt_campaign.txt")
