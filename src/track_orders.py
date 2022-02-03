@@ -21,10 +21,26 @@ class TrackOrders:
 
 
     def get_never_ordered_per_costumer(self, costumer):
-        pass
+        orderList = self.orders
+        menuClient = set()
+        allMenu = set()
+        for i in range(len(orderList)):
+            allMenu.add(orderList[i][1])
+            if orderList[i][0] == costumer:
+                menuClient.add(orderList[i][1])
+        return allMenu.difference(menuClient)
+
 
     def get_days_never_visited_per_costumer(self, costumer):
-        pass
+        orderList = self.orders
+        clientDay = set()
+        allDays = set()
+        for i in range(len(orderList)):
+            allDays.add(orderList[i][2])
+            if orderList[i][0] == costumer:
+                clientDay.add(orderList[i][2])
+        return allDays.difference(clientDay)
+
 
     def get_busiest_day(self):
         pass
