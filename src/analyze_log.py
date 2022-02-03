@@ -5,10 +5,10 @@ from src.track_orders import TrackOrders
 def track_restaurant_orders(files):
     with open(files, 'r') as open_file:
         result = list(csv.reader(open_file))
-    # track_orders = TrackOrders()
+    track_orders = TrackOrders()
     for name, dish, weekday in result:
-        TrackOrders().add_new_order(name, dish, weekday)
-    return TrackOrders()
+        track_orders.add_new_order(name, dish, weekday)
+    return track_orders
 
 
 def saving_data(data_to_save):
