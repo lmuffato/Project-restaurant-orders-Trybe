@@ -1,4 +1,7 @@
-from .analyze_log import get_requests
+from .analyze_log import (
+    get_requests,
+    menu,
+)
 
 
 class TrackOrders:
@@ -20,10 +23,14 @@ class TrackOrders:
     def get_most_ordered_dish_per_costumer(self, costumer):
         sorted_orders = get_requests(self.orders, costumer)
         most_ordered = max(sorted_orders, key=sorted_orders.get)
+
         return most_ordered
 
     def get_never_ordered_per_costumer(self, costumer):
-        pass
+        sorted_orders = set(get_requests(self.orders, costumer))
+        never_ordered = sorted_orders.symmetric_difference(menu)
+
+        return never_ordered
 
     def get_days_never_visited_per_costumer(self, costumer):
         pass
