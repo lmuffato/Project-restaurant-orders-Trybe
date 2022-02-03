@@ -23,7 +23,13 @@ class TrackOrders:
         return collections.Counter(orders).most_common(1)[0][0]
 
     def get_never_ordered_per_costumer(self, costumer):
-        pass
+        ordered_foods = set()
+        no_ordered_foods = set()
+        for item in self.orders:
+            if item["costumer_name"] == costumer:
+                ordered_foods.add(item["order_food"])
+            no_ordered_foods.add(item["order_food"])
+        return no_ordered_foods.difference(ordered_foods)
 
     def get_days_never_visited_per_costumer(self, costumer):
         pass
