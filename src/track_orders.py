@@ -2,7 +2,8 @@ from .analyze_log import (
     get_requests,
     menu,
     get_days,
-    days
+    days,
+    get_days_open,
 )
 
 
@@ -41,7 +42,10 @@ class TrackOrders:
         return days_off
 
     def get_busiest_day(self):
-        pass
+        all_days = get_days_open(self.orders)
+        busiest_day = max(all_days, key=all_days.get)
+
+        return busiest_day
 
     def get_least_busy_day(self):
         pass

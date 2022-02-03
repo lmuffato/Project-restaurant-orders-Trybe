@@ -29,14 +29,23 @@ def get_requests(orders, name):
     return Counter(requests)
 
 
-def get_days(list, name):
+def get_days(orders, name):
     requests = []
 
-    for item in range(len(list)):
-        if list[item][0] == name:
-            requests.append(list[item][2])
+    for item in range(len(orders)):
+        if orders[item][0] == name:
+            requests.append(orders[item][2])
 
     return requests
+
+
+def get_days_open(orders):
+    requests = []
+
+    for item in range(len(orders)):
+        requests.append(orders[item][2])
+
+    return Counter(requests)
 
 
 def analyze_log(path_to_file):
