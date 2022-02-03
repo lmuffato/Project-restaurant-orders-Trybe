@@ -29,9 +29,7 @@ def most_ordered(person, file):
 def qty_order_client(order, client, file):
     orders_db = read_csv(file)
     return len([sale[1] for sale in orders_db
-        if client == sale[0] and
-        order == sale[1]]
-    )
+                if client == sale[0] and order == sale[1]])
 
 
 def never_ordered_client(client, file):
