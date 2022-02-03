@@ -30,12 +30,12 @@ def mariaPedidos(path, cliente):
     return resposta[0][0]
 
 
-def quantHanburgueArnaldo(caminho):
+def quantHanburgueArnaldo(caminho, cliente):
     contador = 0
     testeString = testeStr(caminho)
 
     for requisicao in testeString:
-        if(requisicao[0] == 'arnaldo' and requisicao[1] == 'hamburguer'):
+        if(requisicao[0] == cliente and requisicao[1] == 'hamburguer'):
             contador += 1
     return contador
 
@@ -60,10 +60,10 @@ def contadorNegativo(caminho, type, cliente):
 
 
 def analyze_log(caminho):
-    maisPedidos = mariaPedidos(caminho)
-    quantHanburgue = quantHanburgueArnaldo(caminho)
-    contadorNeg = contadorNegativo(caminho, 'plate')
-    diasFechados = contadorNegativo(caminho, 'day')
+    maisPedidos = mariaPedidos(caminho, 'maria')
+    quantHanburgue = quantHanburgueArnaldo(caminho, 'arnaldo')
+    contadorNeg = contadorNegativo(caminho, 'plate', 'joao')
+    diasFechados = contadorNegativo(caminho, 'day', 'joao')
 
     file = open('data/mkt_campaign.txt', mode='w')
     file.writelines('{}\n{}\n{}\n{}\n'.format(
