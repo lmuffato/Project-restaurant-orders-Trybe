@@ -1,12 +1,22 @@
+from .analyze_log import prato_mais_pedido
+
+
 class TrackOrders:
+    def __init__(self):
+        self.orders = []
+
     def __len__(self):
         pass
 
     def add_new_order(self, costumer, order, day):
-        pass
+        self.orders.append({
+            "name": costumer,
+            "food": order,
+            "day": day
+        })
 
     def get_most_ordered_dish_per_costumer(self, costumer):
-        pass
+        return prato_mais_pedido(self.orders,costumer)
 
     def get_never_ordered_per_costumer(self, costumer):
         pass

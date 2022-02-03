@@ -16,11 +16,10 @@ def read_csv(path):
     return result
 
 
-def maria_mais_pedido(path):
+def prato_mais_pedido(data, costumer):
     dicionario = dict()
-    data_reader = read_csv(path)
-    for i in data_reader:
-        if i["name"] == "maria":
+    for i in data:
+        if i["name"] == costumer:
             if i["food"] not in dicionario:
                 dicionario[i["food"]] = 1
             else:
@@ -61,24 +60,21 @@ def joao_days_of(path):
     return all_days.difference(joao_days_on)
 
 
-def write_in_txt(path_to_file, txt_file):
-    maria_pedido = maria_mais_pedido(path_to_file)
-    arnaldo_pedido = arnaldo_hamburger_count(path_to_file)
-    joao_nao_pediu = joao_never_requested(path_to_file)
-    joao_nao_veio = joao_days_of(path_to_file)
-    text = (
-        f"{maria_pedido}\n"
-        + f"{arnaldo_pedido}\n"
-        + f"{joao_nao_pediu}\n"
-        + f"{joao_nao_veio}"
-    )
+def write_in_txt(text, txt_file):    
     with open(txt_file, "w") as file:
         file.write(text)
 
 
 def analyze_log(path_to_file):
-    write_in_txt(path_to_file, "data/mkt_campaign.txt")
-
-
-if __name__ == "__main__":
-    analyze_log("data/orders_1.csv")
+    data = read_csv(path_to_file)
+    favorite_food = prato_mais_pedido(data, "maria")
+    arnaldo_pedido = arnaldo_hamburger_count(path_to_file)
+    joao_nao_pediu = joao_never_requested(path_to_file)
+    joao_nao_veio = joao_days_of(path_to_file)
+    text = (
+        f"{favorite_food}\n"
+        + f"{arnaldo_pedido}\n"
+        + f"{joao_nao_pediu}\n"
+        + f"{joao_nao_veio}"
+    )
+    write_in_txt(text, "data/mkt_campaign.txt")
