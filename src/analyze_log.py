@@ -14,6 +14,7 @@ def read_csv(path_to_file):
     return data
 
 
+# Qual o prato mais pedido por 'maria'?
 def maria_fav_food(data, customer):
     dicionario = dict()
     for i in data:
@@ -26,6 +27,16 @@ def maria_fav_food(data, customer):
     return result
 
 
+# Quantas vezes 'arnaldo' pediu 'hamburguer'?
+def arnaldo_burguer(data):
+    orders = 0
+    for order in data:
+        if order["name"] == "arnaldo":
+            if order["food"] == "hamburguer":
+                orders += 1
+    return orders
+
+
 def txt(text, txt_file):
     with open(txt, "w") as file:
         file.write(text)
@@ -35,8 +46,10 @@ def analyze_log(path_to_file):
     # raise NotImplementedError
     data = read_csv(path_to_file)
     maria_fav = maria_fav_food(data, "maria")
+    arnaldo_orders = arnaldo_burguer(data)
 
     result = (
         f"{maria_fav}\n"
+        + f"{arnaldo_orders}"
     )
     txt(result, "data/mkt_campaign.txt")
