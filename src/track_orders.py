@@ -1,16 +1,24 @@
+from src.analyze_log import mariaPedidos, contadorNegativo
+
+
 class TrackOrders:
+    def __init__(self) -> None:
+        self.len = 0
+        self.orders = []
+
     def __len__(self):
-        pass
+        return self.len
 
     def add_new_order(self, costumer, order, day):
-        pass
+        self.orders.append([costumer, order, day])
+        self.len += 1
 
     def get_most_ordered_dish_per_costumer(self, costumer):
-        pass
+        return mariaPedidos(self.orders, costumer)
 
     def get_never_ordered_per_costumer(self, costumer):
-        pass
-
+        return contadorNegativo(self.orders, 'plate', costumer)
+   
     def get_days_never_visited_per_costumer(self, costumer):
         pass
 
