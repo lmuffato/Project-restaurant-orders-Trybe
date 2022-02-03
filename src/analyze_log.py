@@ -6,6 +6,7 @@ def reader(path):
     with open(path) as file:
         return list(csv.reader(file))
 
+
 def favorite_recipes(name, orders):
     all_orders = []
     for order in orders:
@@ -13,6 +14,7 @@ def favorite_recipes(name, orders):
             all_orders.append(order[1])
     counter = Counter(all_orders).most_common(1)[0][0]
     return counter
+
 
 def counting_ordered(name, meal, orders):
     counter = 0
