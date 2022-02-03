@@ -11,10 +11,10 @@ def analyze_log(path_to_file):
         for row in csvreader:
             days.add(row[2])
             dishes.add(row[1])
-            orders.append({"name": row[0], "order": row[1], "day": row[2]})
+            orders.append({"costumer": row[0], "order": row[1], "day": row[2]})
 
         maria_orders = [
-            maria["order"] for maria in orders if maria["name"] == "maria"
+            maria["order"] for maria in orders if maria["costumer"] == "maria"
         ]
 
         maria_max_order = max(maria_orders, key=maria_orders.count)
@@ -22,15 +22,21 @@ def analyze_log(path_to_file):
         arnaldo_hamburger_count = [
             arnaldo["order"]
             for arnaldo in orders
-            if arnaldo["name"] == "arnaldo"
+            if arnaldo["costumer"] == "arnaldo"
         ].count("hamburguer")
 
         joao_never_order = dishes.difference(
-            set([joao["order"] for joao in orders if joao["name"] == "joao"])
+            set(
+                [
+                    joao["order"]
+                    for joao in orders
+                    if joao["costumer"] == "joao"
+                ]
+            )
         )
 
         joao_never_go = days.difference(
-            set([joao["day"] for joao in orders if joao["name"] == "joao"])
+            set([joao["day"] for joao in orders if joao["costumer"] == "joao"])
         )
         data = "\n".join(
             [
