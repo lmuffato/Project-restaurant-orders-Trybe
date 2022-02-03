@@ -28,10 +28,9 @@ def prato_mais_pedido(data, costumer):
     return result
 
 
-def arnaldo_hamburger_count(path):
-    data_reader = read_csv(path)
+def arnaldo_hamburger_count(data):
     counter = 0
-    for i in data_reader:
+    for i in data:
         if i["name"] == "arnaldo":
             if i["food"] == "hamburguer":
                 counter += 1
@@ -49,12 +48,11 @@ def food_never_requested(data, costumer):
     return not_requested
 
 
-def joao_days_of(path):
-    data_reader = read_csv(path)
-    all_days = set([i["day"] for i in data_reader])
+def days_never_visited(data, costumer):
+    all_days = set([i["day"] for i in data])
     joao_days_on = set()
-    for i in data_reader:
-        if i["name"] == "joao":
+    for i in data:
+        if i["name"] == costumer:
             joao_days_on.add(i["day"])
     return all_days.difference(joao_days_on)
 
@@ -67,9 +65,9 @@ def write_in_txt(text, txt_file):
 def analyze_log(path_to_file):
     data = read_csv(path_to_file)
     favorite_food = prato_mais_pedido(data, "maria")
-    arnaldo_pedido = arnaldo_hamburger_count(path_to_file)
+    arnaldo_pedido = arnaldo_hamburger_count(data)
     joao_nao_pediu = food_never_requested(data, "joao")
-    joao_nao_veio = joao_days_of(path_to_file)
+    joao_nao_veio = days_never_visited(data, "joao")
     text = (
         f"{favorite_food}\n"
         + f"{arnaldo_pedido}\n"
