@@ -16,14 +16,14 @@ def read_csv(path_to_file):
 
 # Qual o prato mais pedido por 'maria'?
 def maria_fav_food(data, customer):
-    dicionario = dict()
-    for i in data:
-        if i["name"] == customer:
-            if i["food"] not in dicionario:
-                dicionario[i["food"]] = 1
+    orders = dict()
+    for order in data:
+        if order["name"] == customer:
+            if order["food"] not in orders:
+                orders[order["food"]] = 1
             else:
-                dicionario[i["food"]] += 1
-    result = max(dicionario, key=dicionario.get)
+                orders[order["food"]] += 1
+    result = max(orders, key=orders.get)
     return result
 
 

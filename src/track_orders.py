@@ -1,3 +1,6 @@
+from .analyze_log import maria_fav_food
+
+
 class TrackOrders:
     def __init__(self):
         self.orders = []
@@ -14,7 +17,7 @@ class TrackOrders:
         self.orders.append(create_order)
 
     def get_most_ordered_dish_per_costumer(self, costumer):
-        pass
+        return maria_fav_food(self.orders, costumer)
 
     def get_never_ordered_per_costumer(self, costumer):
         pass
