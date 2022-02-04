@@ -20,7 +20,12 @@ class TrackOrders:
         return mode(food_order_list)
 
     def get_never_ordered_per_costumer(self, costumer):
-        pass
+        costumer_df = filter_row_by_name(self.df, 'joao')
+        full_food_list = get_food_list(self.df)
+        costumer_food_list = get_food_list(costumer_df)
+        for food in costumer_food_list:
+            full_food_list.remove(food)
+        return set(full_food_list)
 
     def get_days_never_visited_per_costumer(self, costumer):
         pass
