@@ -2,41 +2,37 @@ import csv
 
 
 def read_file(path_to_file):
-    orders = []
+    orders = {}
     with open(path_to_file, mode="r") as file:
         file = csv.reader(file)
-        for order in file:
-            orders.append(order)
-    return orders 
+        for name, meal, day in file:
+            if name not in orders:
+                orders[name] = []
+            orders[name].append((meal, day))
+
+    return orders
 
 
 def get_marias_most_ordered_meal(orders):
+    maria_orders = orders['maria']
+
     count = {}
-    marias_orders = []
+    most_ordered = maria_orders[0][0]
 
-    for order in orders:
-        if order[0] == 'maria':
-            marias_orders.append([order[1], order[2]])
-
-    marias_most_ordered = marias_orders[0][0]
-
-    for meal, day in marias_orders:
+    for meal, day in maria_orders:
         if meal not in count:
             count[meal] = 1
         else:
             count[meal] += 1
 
-        if count[meal] > count[marias_most_ordered]:
-            marias_most_ordered: meal
+        if count[meal] > count[most_ordered]:
+            most_ordered: meal
 
-    return marias_most_ordered
+    return most_ordered
 
 
-def get_times_arnaldo_got_hamburguer(orders):
-    arnaldo_orders = []
-    for order in orders:
-        if order[0] == 'arnaldo':
-            arnaldo_orders.append([order[1], order[2]])
+def get_times_arnaldo_got_hamburguer(all_orders):
+    arnaldo_orders = all_orders['arnaldo']
 
     count = {}
 
@@ -45,7 +41,7 @@ def get_times_arnaldo_got_hamburguer(orders):
             count[meal] = 1
         else:
             count[meal] += 1
-    print(count['hamburguer'])
+
     return count['hamburguer']
 
 
@@ -54,7 +50,7 @@ def get_meals_joao_never_order(orders):
     joao_ordered_meals = set()
 
     for order in orders:
-        if order[0] == 'joao':
+        if 'joao' in order:
             joao_ordered_meals.add(order[1])
         else:
             all_meals.add(order[1])
@@ -67,7 +63,7 @@ def get_days_joao_didnt_order(orders):
     days_joao_went = set()
 
     for order in orders:
-        if order[0] == 'joao':
+        if 'joao' in order:
             days_joao_went.add(order[2])
         else:
             all_days.add(order[2])
@@ -82,14 +78,24 @@ def analyze_log(path_to_file):
     meals_joao_never_order = get_meals_joao_never_order(orders)
     days_joao_didnt_order = get_days_joao_didnt_order(orders)
     
-    output = f"""{marias_most_ordered_meal}
-{times_arnaldo_got_hamburguer}
-{meals_joao_never_order}
-{days_joao_didnt_order}"""
+    output = f"""{marias_most_ordered_meal}\n {times_arnaldo_got_hamburguer}\n
+        {meals_joao_never_order}\n
+        {days_joao_didnt_order}"""
 
     file = open("data/mkt_campaign.txt", mode="w")
     file.write(output)
     file.close()
 
 
-analyze_log('data/orders_1.csv')
+
+
+def read_to_file(path):
+    with open(path, mode="r") as file_orders:
+        dict_from_csv = csv.reader(file_orders)
+        list_orders = []
+        for order in enumerate(dict_from_csv):
+            list_orders.append(order[1])
+
+    print(list_orders)
+
+    read_to_file('data/orders_1.csv')
