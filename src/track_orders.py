@@ -1,18 +1,18 @@
-from analyze_log import get_most_ordered_food
-
-
 class TrackOrders:
+    def __init__(self):
+        self.orders = []
+
     def __len__(self):
-        return len(self.order)
+        return len(self.orders)
 
     def add_new_order(self, costumer, order, day):
-        self.order.append([costumer, order, day])
+        self.orders.append([costumer, order, day])
 
     def get_most_ordered_dish_per_costumer(self, costumer):
         costumer_orders = []
-        for order in self.order:
-            if order[0] == costumer:
-                costumer_orders.append(order[1])
+        for order in self.orders:
+            if orders[0] == costumer:
+                costumer_orders.append(orders[1])
         most_ordered = get_most_ordered_food(costumer_orders)
         return most_ordered
 
@@ -20,10 +20,10 @@ class TrackOrders:
         all_foods_repeted = []
         all_foods = []
         foods = []
-        for order in self.order:
-            if order[0] == costumer:
-                foods.append(order[1])
-            all_foods_repeted.append(order[1])
+        for order in self.orders:
+            if orders[0] == costumer:
+                foods.append(orders[1])
+            all_foods_repeted.append(orders[1])
         for food in all_foods_repeted:
             if food not in all_foods:
                 all_foods.append(food)
@@ -34,7 +34,7 @@ class TrackOrders:
         all_days_repeated = []
         all_days = []
         costumer_days = []
-        for order in self.order:
+        for order in self.orders:
             if order[0] == costumer:
                 costumer_days.append(order[2])
             all_days_repeated.append(order[2])
@@ -47,17 +47,33 @@ class TrackOrders:
 
     def get_busiest_day(self):
         days = []
-        for order in self.order:
-            days.append(order[2])
+        for order in self.orders:
+            days.append(orders[2])
         busiest = get_most_ordered_food(days)
         return busiest
 
     def get_least_busy_day(self):
         days = []
-        for order in self.order:
-            days.append(order[2])
+        for order in self.orders:
+            days.append(orders[2])
         least_busy = get_least_ordered(days)
         return least_busy
+
+
+def get_most_ordered_food(foods):
+    count_foods = {}
+    most_frequent = foods[0]
+
+    for food in foods:
+        if food not in count_foods:
+            count_foods[food] = 1
+        else:
+            count_foods[food] += 1
+
+        if count_foods[food] > count_foods[most_frequent]:
+            most_frequent = food
+
+    return most_frequent
 
 
 def never_ordered_customer(all_foods, joao_foods):
@@ -70,11 +86,11 @@ def never_ordered_customer(all_foods, joao_foods):
 
 
 def costumer_never_visited(all_days, costumer_days):
-    never_went = set()
+    never = set()
     for day in all_days:
         if day not in costumer_days:
-            never_went.add(day)
-    return never_went
+            never.add(day)
+    return never
 
 
 def get_least_ordered(costumer_orders):
