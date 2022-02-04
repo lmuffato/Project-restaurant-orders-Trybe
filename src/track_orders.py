@@ -17,10 +17,33 @@ class TrackOrders:
         return max(customer_orders, key=customer_orders.count)
 
     def get_never_ordered_per_costumer(self, costumer):
-        pass
+        dishes = set(
+            [costumer_order["order"] for costumer_order in self.orders]
+        )
+
+        costumer_orders = set(
+            [
+                costumer_order["order"]
+                for costumer_order in self.orders
+                if costumer_order["costumer"] == costumer
+            ]
+        )
+        print(f"todos os pratos: {dishes}\npratos do cliente{costumer_orders}")
+
+        return dishes.difference(costumer_orders)
 
     def get_days_never_visited_per_costumer(self, costumer):
-        pass
+        days = set([costumer_order["day"] for costumer_order in self.orders])
+
+        costumer_days = set(
+            [
+                costumer_order["day"]
+                for costumer_order in self.orders
+                if costumer_order["costumer"] == costumer
+            ]
+        )
+
+        return days.difference(costumer_days)
 
     def get_busiest_day(self):
         pass
