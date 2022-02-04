@@ -28,7 +28,12 @@ class TrackOrders:
         return set(full_food_list)
 
     def get_days_never_visited_per_costumer(self, costumer):
-        pass
+        costumer_df = filter_row_by_name(self.df, costumer)
+        full_day_list = get_day_list(self.df)
+        costumer_day_list = get_day_list(costumer_df)
+        for day in costumer_day_list:
+            full_day_list.remove(day)
+        return set(full_day_list)
 
     def get_busiest_day(self):
         pass
