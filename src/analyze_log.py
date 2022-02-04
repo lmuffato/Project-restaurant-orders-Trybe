@@ -10,10 +10,10 @@ def read_file(path_to_file):
     return orders
 
 
-def orders_by_name(orders, name):
+def orders_by_name(orders, customer):
     name_orders = []
     for order in orders:
-        if order[0] == name:
+        if order[0] == customer:
             name_orders.append([order[1], order[2]])
 
     return name_orders
@@ -24,17 +24,17 @@ def get_most_ordered_meal(orders, customer):
     marias_orders = []
 
     marias_orders = orders_by_name(orders, customer)
-
+    print(marias_orders)
     marias_most_ordered = marias_orders[0][0]
-
-    for meal, day in marias_orders:
-        if meal not in count:
-            count[meal] = 1
+    for order in marias_orders:
+        if order[0] not in count:
+            count[order[0]] = 1
         else:
-            count[meal] += 1
+            count[order[0]] += 1
 
-        if count[meal] > count[marias_most_ordered]:
-            marias_most_ordered: meal
+        if count[order[0]] > count[marias_most_ordered]:
+
+            marias_most_ordered: order[0]
 
     return marias_most_ordered
 
@@ -52,7 +52,6 @@ def get_times_arnaldo_got_hamburguer(orders):
             count[meal] = 1
         else:
             count[meal] += 1
-    print(count['hamburguer'])
     return count['hamburguer']
 
 
