@@ -1,3 +1,4 @@
+from collections import Counter
 class TrackOrders:
     def __init__(self):
         self.orders = {}
@@ -19,10 +20,14 @@ class TrackOrders:
         self.days.append(day)
 
     def get_most_ordered_dish_per_costumer(self, costumer):
-        pass
+        ordered_by_customer = Counter(self.orders[costumer])
+        most_ordered_by_customer = ordered_by_customer.most_common(1)[0][0][0]
+        return most_ordered_by_customer
 
     def get_never_ordered_per_costumer(self, costumer):
-        pass
+        ordered_by_customer = set(order[0] for order in self.orders[costumer])
+        never_ordered_by_customer = self.menu.difference(ordered_by_customer)
+        return never_ordered_by_customer
 
     def get_days_never_visited_per_costumer(self, costumer):
         pass
