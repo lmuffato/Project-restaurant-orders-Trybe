@@ -19,11 +19,11 @@ def orders_by_name(orders, name):
     return name_orders
 
 
-def get_marias_most_ordered_meal(orders):
+def get_most_ordered_meal(orders, customer):
     count = {}
     marias_orders = []
 
-    marias_orders = orders_by_name(orders, 'maria')
+    marias_orders = orders_by_name(orders, customer)
 
     marias_most_ordered = marias_orders[0][0]
 
@@ -56,12 +56,12 @@ def get_times_arnaldo_got_hamburguer(orders):
     return count['hamburguer']
 
 
-def get_meals_joao_never_order(orders):
+def get_meals_never_order(orders, customer):
     all_meals = set()
     joao_ordered_meals = set()
 
     for order in orders:
-        if order[0] == 'joao':
+        if order[0] == customer:
             joao_ordered_meals.add(order[1])
         else:
             all_meals.add(order[1])
@@ -69,12 +69,12 @@ def get_meals_joao_never_order(orders):
     return all_meals.symmetric_difference(joao_ordered_meals)
 
 
-def get_days_joao_didnt_order(orders):
+def get_days_didnt_order(orders, costumer):
     all_days = set()
     days_joao_went = set()
 
     for order in orders:
-        if order[0] == 'joao':
+        if order[0] == costumer:
             days_joao_went.add(order[2])
         else:
             all_days.add(order[2])
@@ -84,10 +84,10 @@ def get_days_joao_didnt_order(orders):
 
 def analyze_log(path_to_file):
     orders = read_file(path_to_file)
-    marias_most_ordered_meal = get_marias_most_ordered_meal(orders)
+    marias_most_ordered_meal = get_most_ordered_meal(orders, 'maria')
     times_arnaldo_got_hamburguer = get_times_arnaldo_got_hamburguer(orders)
-    meals_joao_never_order = get_meals_joao_never_order(orders)
-    days_joao_didnt_order = get_days_joao_didnt_order(orders)
+    meals_joao_never_order = get_meals_never_order(orders, 'joao')
+    days_joao_didnt_order = get_days_didnt_order(orders, 'joao')
 
     output = f"""{marias_most_ordered_meal}
 {times_arnaldo_got_hamburguer}
