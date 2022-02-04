@@ -1,5 +1,6 @@
 class TrackOrders:
-    orders = list()
+    def __init__(self):
+        self.orders = list()
 
     def __len__(self):
         return len(self.orders)
@@ -46,7 +47,12 @@ class TrackOrders:
         return days.difference(costumer_days)
 
     def get_busiest_day(self):
-        pass
+        days = [order["day"] for order in self.orders]
+        print("days:", days)
+        return max(days, key=days.count)
 
     def get_least_busy_day(self):
         pass
+
+    def clear(self):
+        self.orders.clear()
