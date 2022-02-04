@@ -1,6 +1,14 @@
 class TrackOrders:
+    def __init__(self):
+        self.orders = {}
+        self.menu = set()
+        self.days = []
+
     def __len__(self):
-        pass
+        length = 0
+        for _, orders in self.orders.items():
+            length += len(orders)
+        return length
 
     def add_new_order(self, costumer, order, day):
         if costumer in self.orders:
