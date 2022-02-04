@@ -1,6 +1,7 @@
 import csv
 from collections import Counter
 
+
 def read_file(path):
     with open(path, newline="") as file:
         columns = ["customer", "order", "week_day"]
@@ -25,19 +26,20 @@ def find_unusual_days(customer_info, data):
     return days.difference(customer_days)
 
 
-def get_order_quantity_customer(data, order):
-    quantity = 0
+def count_custemer_order(data, order):
+    total = 0
     for item in data:
         if item["order"] == order:
-            quantity += 1
-    return quantity
+            total += 1
+    return total
 
 
-def get_food_never_ordered(customer_data, data):
+def find_never_ordered_food(customer_info, data):
     orders = set([item["order"] for item in data])
-    orders_customer = set([item["order"] for item in customer_data])
+    customer_orders = set([item["order"] for item in customer_info])
 
-    return orders.difference(orders_customer)
+    return orders.difference(customer_orders)
+
 
 def analyze_log(path_to_file):
     raise NotImplementedError
