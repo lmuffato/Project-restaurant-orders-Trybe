@@ -24,7 +24,18 @@ class TrackOrders:
         return most_frequent[1][1]
 
     def get_never_ordered_per_costumer(self, costumer):
-        pass
+        aux_all_customers = []
+        aux_customer = []
+        for food in self.orders:
+            aux_all_customers.append(food[1])
+            if food[0] == costumer:
+                aux_customer.append(food[1])
+
+        make_intersection = set(aux_all_customers).difference(
+            set(aux_customer)
+        )
+
+        return make_intersection
 
     def get_days_never_visited_per_costumer(self, costumer):
         pass
