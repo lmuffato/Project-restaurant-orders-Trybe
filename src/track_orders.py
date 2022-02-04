@@ -1,4 +1,4 @@
-from src.util import read_csv, filter_row_by_name, get_day_list, get_food_list
+from src.util import filter_row_by_name, get_day_list, get_food_list
 from statistics import mode
 
 
