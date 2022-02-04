@@ -7,7 +7,7 @@ class TrackOrders:
         self.df = []
 
     def __len__(self):
-        pass
+        return len(self.df)
 
     def add_new_order(self, costumer, order, day):
         self.df.append([costumer, order, day])
