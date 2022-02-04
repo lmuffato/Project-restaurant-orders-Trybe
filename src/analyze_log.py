@@ -28,10 +28,10 @@ def maria_fav_food(data, customer):
 
 
 # Quantas vezes 'arnaldo' pediu 'hamburguer'?
-def arnaldo_burguer(data):
+def arnaldo_burguer(data, customer):
     orders = 0
     for order in data:
-        if order["name"] == "arnaldo":
+        if order["name"] == customer:
             if order["food"] == "hamburguer":
                 orders += 1
     return orders
@@ -53,11 +53,11 @@ def not_ordered(data):
 
 
 # Quais dias 'joao' nunca foi na lanchonete?
-def not_visited(data):
+def not_visited(data, customer):
     visited_days = set([day["day"] for day in data])
     joao_log = set()
     for date in data:
-        if date["name"] == "joao":
+        if date["name"] == customer:
             joao_log.add(date["day"])
     return visited_days.difference(joao_log)
 
@@ -71,9 +71,9 @@ def analyze_log(path_to_file):
     # raise NotImplementedError
     data = read_csv(path_to_file)
     maria_fav = maria_fav_food(data, "maria")
-    arnaldo_orders = arnaldo_burguer(data)
-    joao_not_ordered = not_ordered(data)
-    joao_not_visited = not_visited(data)
+    arnaldo_orders = arnaldo_burguer(data, "arnaldo")
+    joao_not_ordered = not_ordered(data, "joao")
+    joao_not_visited = not_visited(data, "joao")
 
     result = (
         f"{maria_fav}\n"
