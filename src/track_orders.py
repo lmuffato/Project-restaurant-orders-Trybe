@@ -11,8 +11,8 @@ class TrackOrders:
     def get_most_ordered_dish_per_costumer(self, costumer):
         costumer_orders = []
         for order in self.orders:
-            if orders[0] == costumer:
-                costumer_orders.append(orders[1])
+            if order[0] == costumer:
+                costumer_orders.append(order[1])
         most_ordered = get_most_ordered_food(costumer_orders)
         return most_ordered
 
@@ -21,9 +21,9 @@ class TrackOrders:
         all_foods = []
         foods = []
         for order in self.orders:
-            if orders[0] == costumer:
-                foods.append(orders[1])
-            all_foods_repeted.append(orders[1])
+            if order[0] == costumer:
+                foods.append(order[1])
+            all_foods_repeted.append(order[1])
         for food in all_foods_repeted:
             if food not in all_foods:
                 all_foods.append(food)
@@ -48,14 +48,14 @@ class TrackOrders:
     def get_busiest_day(self):
         days = []
         for order in self.orders:
-            days.append(orders[2])
+            days.append(order[2])
         busiest = get_most_ordered_food(days)
         return busiest
 
     def get_least_busy_day(self):
         days = []
         for order in self.orders:
-            days.append(orders[2])
+            days.append(order[2])
         least_busy = get_least_ordered(days)
         return least_busy
 
