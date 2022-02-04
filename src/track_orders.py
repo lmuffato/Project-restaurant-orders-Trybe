@@ -3,7 +3,12 @@ class TrackOrders:
         pass
 
     def add_new_order(self, costumer, order, day):
-        pass
+        if costumer in self.orders:
+            self.orders[costumer].append((order, day))
+        else:
+            self.orders[costumer] = [(order, day)]
+        self.menu.add(order)
+        self.days.append(day)
 
     def get_most_ordered_dish_per_costumer(self, costumer):
         pass
