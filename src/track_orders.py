@@ -37,10 +37,22 @@ class TrackOrders:
         return most_ordered
 
     def get_never_ordered_per_costumer(self, costumer):
-        pass
+        all_foods = {"misto-quente", "hamburguer", "pizza", "coxinha"}
+        person_orders = self.get_orders_by_name()[costumer]
+        ordered_by_person = set()
+        for food, day in person_orders:
+            ordered_by_person.add(food)
+        return all_foods - ordered_by_person
 
     def get_days_never_visited_per_costumer(self, costumer):
-        pass
+        all_days = {"segunda-feira", "terça-feira", "sabado"}
+        person_orders = self.get_orders_by_name()[costumer]
+        days_person_go = set()
+
+        for food, day in person_orders:
+            days_person_go.add(day)
+
+        return all_days - days_person_go
 
     def get_busiest_day(self):
         pass
