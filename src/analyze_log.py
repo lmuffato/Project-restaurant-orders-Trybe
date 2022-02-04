@@ -41,5 +41,19 @@ def find_never_ordered_food(customer_info, data):
     return orders.difference(customer_orders)
 
 
-def analyze_log(path_to_file):
-    raise NotImplementedError
+def analyze_log(path):
+    data = read_file(path)
+
+    data_arnaldo = get_customers_info("arnaldo", data)
+    data_maria = get_customers_info("maria", data)
+    data_joao = get_customers_info("joao", data)
+
+    column1 = find_most_ordered(data_maria)
+    column2 = count_custemer_order(data_arnaldo, "hamburguer")
+    column3 = find_never_ordered_food(data_joao, data)
+    column4 = find_unusual_days(data_joao, data)
+
+    path = "data/mkt_campaign.txt"
+    with open(path, "w") as file:
+        for item in [column1, column2, column3, column4]:
+            file.write(str(item) + "\n")
