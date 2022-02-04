@@ -1,4 +1,5 @@
-from .analyze_log import maria_fav_food, arnaldo_burguer
+from .analyze_log import maria_fav_food
+from .analyze_log import not_ordered, not_visited
 
 
 class TrackOrders:
@@ -20,10 +21,10 @@ class TrackOrders:
         return maria_fav_food(self.orders, costumer)
 
     def get_never_ordered_per_costumer(self, costumer):
-        return arnaldo_burguer(self.orders, costumer)
+        return not_ordered(self.orders, costumer)
 
     def get_days_never_visited_per_costumer(self, costumer):
-        pass
+        return not_visited(self.orders, costumer)
 
     def get_busiest_day(self):
         pass
