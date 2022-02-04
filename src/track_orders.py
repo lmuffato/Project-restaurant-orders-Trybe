@@ -52,7 +52,14 @@ class TrackOrders:
         return make_intersection
 
     def get_busiest_day(self):
-        pass
+        count = []
+        most_frequent = self.orders[0][2]
+        for day in self.orders:
+            count.append(day[2])
+            if most_frequent == count:
+                most_frequent == day
+
+        return most_frequent
 
     def get_least_busy_day(self):
         pass
