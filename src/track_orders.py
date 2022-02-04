@@ -13,7 +13,7 @@ class TrackOrders:
         self.df.append([costumer, order, day])
 
     def get_most_ordered_dish_per_costumer(self, costumer):
-        costumer_df = filter_row_by_name(df, costumer)
+        costumer_df = filter_row_by_name(self.df, costumer)
         food_order_list = []
         for row in costumer_df:
             food_order_list.append(row[1])
