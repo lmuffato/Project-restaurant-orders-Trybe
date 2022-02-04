@@ -23,7 +23,7 @@ def get_marias_most_ordered_meal(orders):
     count = {}
     marias_orders = []
 
-    orders_by_name(orders, 'maria')
+    marias_orders = orders_by_name(orders, 'maria')
 
     marias_most_ordered = marias_orders[0][0]
 
@@ -97,3 +97,6 @@ def analyze_log(path_to_file):
     file = open("data/mkt_campaign.txt", mode="w")
     file.write(output)
     file.close()
+
+
+analyze_log("data/orders_1.csv")
