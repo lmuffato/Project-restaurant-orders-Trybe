@@ -38,7 +38,18 @@ class TrackOrders:
         return make_intersection
 
     def get_days_never_visited_per_costumer(self, costumer):
-        pass
+        aux_all_customers = []
+        aux_customers = []
+        for food in self.orders:
+            aux_all_customers.append(food[2])
+            if food[0] == costumer:
+                aux_customers.append(food[2])
+
+        make_intersection = set(aux_all_customers).difference(
+            set(aux_customers)
+        )
+
+        return make_intersection
 
     def get_busiest_day(self):
         pass
