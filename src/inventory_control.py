@@ -34,3 +34,15 @@ class InventoryControl:
 
     def get_quantities_to_buy(self):
         return self.inventory
+
+    def get_available_dishes(self):
+        dishes = ['hamburguer', 'pizza', 'misto-quente', 'coxinha']
+        available_dishes = set()
+        for dish in dishes:
+            count = 0
+            for ing in self.INGREDIENTS[dish]:
+                if self.MINIMUM_INVENTORY[ing] <= self.inventory[ing]:
+                    count += 1
+            if count == 0:
+                available_dishes.add(dish)
+        return available_dishes
