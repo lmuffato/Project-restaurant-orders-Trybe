@@ -68,7 +68,3 @@ def analyze_log(path_to_file):
         file.write(str(arnaldo_hamburger_orders) + '\n')
         file.write(str(joao_not_ordered_meals) + '\n')
         file.write(str(joao_not_meal_days))
-
-
-if __name__ == '__main__':
-    analyze_log('data/orders_1.csv')
