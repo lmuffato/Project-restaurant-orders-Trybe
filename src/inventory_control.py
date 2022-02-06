@@ -19,11 +19,18 @@ class InventoryControl:
         self.orders = []
         self.inventory = self.MINIMUM_INVENTORY
 
+    def update_inventory(self, order):
+        for ingredient in self.INGREDIENTS[order]:
+            self.inventory[ingredient] -= 1
+
     def add_new_order(self, costumer, order, day):
-        if order not in self.get_available_dishes():
+        available_dishes = self.get_available_dishes()
+        if order not in available_dishes:
             return False
         else:
             self.orders.append([costumer, order, day])
+            # self.update_inventory(order)
+            return False
 
     def get_quantities_to_buy(self):
         qtties_to_buy = {
