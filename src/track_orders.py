@@ -1,5 +1,6 @@
 from collections import Counter
 
+
 class TrackOrders:
     def __init__(self):
         self.lista_pedidos = []
@@ -23,7 +24,6 @@ class TrackOrders:
         a_mais_pedida = c.most_common(1)[0][0]
         return a_mais_pedida
 
-
     def get_never_ordered_per_costumer(self, costumer):
         meals_list = []
         all_meals = []
@@ -31,7 +31,7 @@ class TrackOrders:
             all_meals.append(row['order'])
             if row['customer'] == costumer:
                 meals_list.append(row['order'])
-        
+
         e = set(all_meals)
         c = set(meals_list)
         return e.difference(c)
@@ -56,11 +56,10 @@ class TrackOrders:
         a = b.most_common(1)[0][0]
         return a
 
-
     def get_least_busy_day(self):
         not_busy = []
         for row in self.lista_pedidos:
             not_busy.append(row['day'])
         z = Counter(not_busy)
         y = z.most_common()
-        return y[-1][0] #ultimo da lista, primeiro da tupla
+        return y[-1][0]  # ultimo da lista, primeiro da tupla
