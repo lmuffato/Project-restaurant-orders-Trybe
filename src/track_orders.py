@@ -1,7 +1,7 @@
 from collections import Counter
 
-class TrackOrders:
 
+class TrackOrders:
     def __init__(self):
         self.data = []
 
