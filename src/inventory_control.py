@@ -16,24 +16,7 @@ class InventoryControl:
     }
 
     def __init__(self):
-        self.orders = []
-        self.inventory = self.MINIMUM_INVENTORY
-
-    def update_inventory(self, order):
-        for ingredient in self.INGREDIENTS[order]:
-            self.inventory[ingredient] -= 1
-
-    def add_new_order(self, costumer, order, day):
-        available_dishes = self.get_available_dishes()
-        if order not in available_dishes:
-            return False
-        else:
-            self.orders.append([costumer, order, day])
-            # self.update_inventory(order)
-            return False
-
-    def get_quantities_to_buy(self):
-        qtties_to_buy = {
+        self.quantities_to_buy = {
             'pao': 0,
             'carne': 0,
             'queijo': 0,
@@ -43,20 +26,22 @@ class InventoryControl:
             'frango': 0,
         }
 
-        for order in self.orders:
-            ingredients = self.INGREDIENTS[order[1]]
-            for ingredient in ingredients:
-                qtties_to_buy[ingredient] += 1
+    def add_new_order(self, costumer, order, day):
+        for ing in self.INGREDIENTS[order]:
+            if self.quantities_to_buy[ing] >= self.MINIMUM_INVENTORY[ing]:
+                return False
 
-        return qtties_to_buy
+            self.quantities_to_buy[ing] += 1
+
+    def get_quantities_to_buy(self):
+        return self.quantities_to_buy
 
     def get_available_dishes(self):
         available_dishes = set()
         for dish, ingredients in self.INGREDIENTS.items():
             is_available = True
-
-            for ingredient in ingredients:
-                if self.inventory[ingredient] == 0:
+            for ing in ingredients:
+                if self.quantities_to_buy[ing] >= self.MINIMUM_INVENTORY[ing]:
                     is_available = False
 
             if is_available:
