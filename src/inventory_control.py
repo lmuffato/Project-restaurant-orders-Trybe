@@ -17,6 +17,12 @@ class InventoryControl:
         'massa': 50,
         'frango': 50,
     }
+    DISHES = {
+        'hamburguer',
+        'pizza',
+        'misto-quente',
+        'coxinha',
+    }
 
     def __init__(self):
         self.lista_pedidos  = []
@@ -47,3 +53,20 @@ class InventoryControl:
         for chave, valor in r.items():
             zero_ingredientes[chave] = valor
         return zero_ingredientes
+
+    def get_available_dishes(self):
+        nao_tem = self.get_quantities_to_buy()
+        acabou_ingrediente = dict()
+        # comparar as chaves dos dois dic
+        for key in self.MINIMUM_INVENTORY:
+            if (key in nao_tem and self.MINIMUM_INVENTORY[key] == nao_tem[key]):
+                acabou_ingrediente[key] = self.MINIMUM_INVENTORY[key]  # se igual a zero, verificar qual prato não pode ser feito
+        for chave, valor in self.INGREDIENTS.items(): # .items() transforma numa lista de pares
+            its_over = set(acabou_ingrediente)
+            menu_ing = set(valor)
+            z = its_over.intersection(menu_ing)
+            if z != set():
+               self.DISHES.remove(chave) 
+        return self.DISHES # voltar uma lista com os pratos que podem ser feitos
+       
+       # bloquear o método add_new_order        
