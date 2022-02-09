@@ -25,7 +25,7 @@ class InventoryControl:
     }
 
     def __init__(self):
-        self.lista_pedidos  = []
+        self.lista_pedidos = []
 
     def add_new_order(self, costumer, order, day):
         self.lista_pedidos.append({
@@ -36,14 +36,14 @@ class InventoryControl:
 
     def get_quantities_to_buy(self):
         zero_ingredientes = {
-        'pao': 0,
-        'carne': 0,
-        'queijo': 0,
-        'molho': 0,
-        'presunto': 0,
-        'massa': 0,
-        'frango': 0,
-    }
+            'pao': 0,
+            'carne': 0,
+            'queijo': 0,
+            'molho': 0,
+            'presunto': 0,
+            'massa': 0,
+            'frango': 0,
+        }
         todos_ingre = []
         for row in self.lista_pedidos:
             pedidos = row['order']
@@ -55,18 +55,19 @@ class InventoryControl:
         return zero_ingredientes
 
     def get_available_dishes(self):
-        nao_tem = self.get_quantities_to_buy()
+        naotem = self.get_quantities_to_buy()
         acabou_ingrediente = dict()
         # comparar as chaves dos dois dic
         for key in self.MINIMUM_INVENTORY:
-            if (key in nao_tem and self.MINIMUM_INVENTORY[key] == nao_tem[key]):
-                acabou_ingrediente[key] = self.MINIMUM_INVENTORY[key]  # se igual a zero, verificar qual prato não pode ser feito
-        for chave, valor in self.INGREDIENTS.items(): # .items() transforma numa lista de pares
+            if (key in naotem and self.MINIMUM_INVENTORY[key] == naotem[key]):
+                # se igual a zero, verificar qual prato não pode ser feito
+                acabou_ingrediente[key] = self.MINIMUM_INVENTORY[key]
+                # .items() transforma numa lista de pares
+        for chave, valor in self.INGREDIENTS.items():
+            # .items() transforma numa lista de pares
             its_over = set(acabou_ingrediente)
             menu_ing = set(valor)
             z = its_over.intersection(menu_ing)
             if z != set():
-               self.DISHES.remove(chave) 
-        return self.DISHES # voltar uma lista com os pratos que podem ser feitos
-       
-       # bloquear o método add_new_order        
+                self.DISHES.remove(chave)
+        return self.DISHES
