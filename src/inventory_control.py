@@ -27,7 +27,6 @@ class InventoryControl:
             'frango': 50,
         }
 
-
     def add_new_order(self, costumer, order, day):
         if order in InventoryControl.get_available_dishes(self):
             for item in InventoryControl.INGREDIENTS[order]:
@@ -35,7 +34,6 @@ class InventoryControl:
             self.orders.append([costumer, order, day])
         else:
             return False
-
 
     def get_quantities_to_buy(self):
         ingredients_counter = {}
@@ -48,7 +46,6 @@ class InventoryControl:
                 ingredients_counter[item] += 1
 
         return ingredients_counter
-
 
     def get_available_dishes(self):
         available_dishes = set()
