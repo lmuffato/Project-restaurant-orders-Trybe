@@ -23,7 +23,7 @@ def count_hamburgers(customer, data):
 
 # Quais pratos 'joao' nunca pediu?
 def customer_never_ordered(customer, data):
-    all_foods = [ row[1] for row in data ]
+    all_foods = [row[1] for row in data]
     foods_ordered_by_customer = []
 
     for row in data:
@@ -35,7 +35,7 @@ def customer_never_ordered(customer, data):
 # Quais dias 'joao' nunca foi na lanchonete?
 def days_customer_never_ordered(name, data):
     days_customer_ordered = []
-    all_days = [ row[2] for row in data ]
+    all_days = [row[2] for row in data]
 
     for row in data:
         if row[0] == name:
