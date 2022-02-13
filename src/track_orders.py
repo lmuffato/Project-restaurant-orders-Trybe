@@ -19,7 +19,9 @@ class TrackOrders:
 
     def get_never_ordered_per_costumer(self, costumer):
         all_foods = [row[1] for row in self.orders]
-        foods_ordered_by_customer = [row[1] for row in self.orders if row[0] == costumer]
+        foods_ordered_by_customer = [
+            row[1] for row in self.orders if row[0] == costumer
+            ]
 
         # for row in self.orders:
         #     if row[0] == costumer:
@@ -28,7 +30,9 @@ class TrackOrders:
 
     def get_days_never_visited_per_costumer(self, costumer):
         all_days = [row[2] for row in self.orders]
-        days_customer_ordered = [row[2] for row in self.orders if row[0] == costumer]
+        days_customer_ordered = [
+            row[2] for row in self.orders if row[0] == costumer
+            ]
 
         # for row in self.orders:
         #     if row[0] == costumer:
