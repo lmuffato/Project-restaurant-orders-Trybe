@@ -27,11 +27,11 @@ class InventoryControl:
         }
 
     def add_new_order(self, costumer, order, day):
-        for ingredient in self.INGREDIENTS[order]:
-            if self.order_amount[ingredient] >= self.MINIMUM_INVENTORY[ingredient]:
+        for i in self.INGREDIENTS[order]:
+            if self.order_amount[i] >= self.MINIMUM_INVENTORY[i]:
                 return False
 
-            self.order_amount[ingredient] += 1
+            self.order_amount[i] += 1
 
     def get_quantities_to_buy(self):
         return self.order_amount
