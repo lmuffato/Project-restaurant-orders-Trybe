@@ -38,11 +38,11 @@ def not_ever_ordered(data, client):
     for row in data:
         if row[1] not in available_meals:
             available_meals.append(row[1])
-    not_yet_ordered = available_meals
+    orders = []
     for row in data:
-        if row[0] == client and row[1] in not_yet_ordered:
-            not_yet_ordered.remove(row[1])
-    return not_yet_ordered
+        if row[0] == client and row[1] not in orders:
+            orders.append(row[1])
+    return set(available_meals).difference(set(orders))
 
 
 def days_never_gone(data, client):
@@ -50,11 +50,11 @@ def days_never_gone(data, client):
     for row in data:
         if row[2] not in available_days:
             available_days.append(row[2])
-    not_yet_gone = available_days
+    days_gone = []
     for row in data:
-        if row[0] == client and row[2] in not_yet_gone:
-            not_yet_gone.remove(row[2])
-    return not_yet_gone
+        if row[0] == client and row[2] not in days_gone:
+            days_gone.append(row[2])
+    return set(available_days).difference(set(days_gone))
 
 
 # hamburguer
