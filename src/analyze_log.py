@@ -42,8 +42,8 @@ def get_unique_days(data):
 
 # RETORNAR A CONTAGEM DOS PEDIDOS POR PESSOA
 def get_food_count_by_person(data, person):
-  # Definindo conjunto de elementos distintos {}
-  # O set(array) faz o mesmo, porém contendo dados
+    # Definindo conjunto de elementos distintos {}
+    # O set(array) faz o mesmo, porém contendo dados
     food_count = {}
 
     # retornar apenas as linhas onde a pessoa for igual a person
@@ -64,7 +64,9 @@ def get_food_count_by_person(data, person):
 
 # Teste
 # get_food_count_by_person('data/orders_1.csv', 'maria')
-# print(get_food_count_by_person(get_data_from_csv('data/orders_1.csv'), 'maria'))
+# print(
+#   get_food_count_by_person(get_data_from_csv('data/orders_1.csv'), 'maria')
+# )
 
 
 # O PRATO MAIS PEDIDO POR PESSOA
