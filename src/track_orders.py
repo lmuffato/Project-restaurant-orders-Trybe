@@ -92,7 +92,7 @@ class TrackOrders:
 
     # RETORNA O DIA DE QUE TEVE MAIS PEDIDOS
     def get_busiest_day(self):
-        all_days = self.get_all_days_list()  
+        all_days = self.get_all_days_list()
         all_unique_days = Counter(all_days)
         days_statistics = all_unique_days.most_common()
         # primiero da lista

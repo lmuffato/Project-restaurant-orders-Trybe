@@ -26,8 +26,8 @@ class InventoryControl:
             'frango': 0,
         }
 
-
     # ADICIONA UM NOVO PEDIDO
+
     def add_new_order(self, costumer, order, day):
         # para cada ingrediente da lista de ingredientes
         for ingredient in self.INGREDIENTS[order]:
@@ -82,6 +82,6 @@ class InventoryControl:
 
 # Testando a indisponibilidade de receitas
 # for x in range(50):
-#   inventory_control.add_new_order('Maria', 'hamburguer', 'sexta-feira')  
+# inventory_control.add_new_order('Maria', 'hamburguer', 'sexta-feira')
 
 # print(inventory_control.get_available_dishes())
