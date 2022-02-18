@@ -3,11 +3,11 @@ from collections import Counter
 
 class TrackOrders:
 
-    def __init__(self): # construtor do python
+    def __init__(self):  # construtor do python
         # Adicionar nova ordem de serviço
         self.lista_pedidos = []
 
-    # aqui deve expor a quantidade de estoque 
+    # aqui deve expor a quantidade de estoque
     def __len__(self):
         # permite verificar o comprimento da classe diretamente
         # apos instanciar como track_orders = TrackOrders()
@@ -29,9 +29,9 @@ class TrackOrders:
     def get_lista_pedidos(self):
         return self.lista_pedidos
 
-
     # RETORNA O PRATO MAIS PEDIDO PELO CLIENTE
     def get_most_ordered_dish_per_costumer(self, costumer):
+
         customer_list = []
         # pra cada pedido na lista de pedidos
         for pedidos in self.lista_pedidos:
@@ -39,7 +39,7 @@ class TrackOrders:
             if pedidos['customer'] == costumer:
                 # adiciona o pedido a lista pessoal do cliente
                 customer_list.append(pedidos['order'])
-        
+
         # Counter cria um objeto de chave e valor das contagens
         orders_statistics = Counter(customer_list)
         # most_comum() retorna um array ordenando os elementos
@@ -82,7 +82,7 @@ class TrackOrders:
         all_unique_days = set(all_days)
         customer_unique_days = set(customer_days)
         return all_unique_days.difference(customer_unique_days)
-    
+
     # RETORNA UMA LISTA CONTENDO O DIA DE TODOS OS PEDIDOS
     def get_all_days_list(self):
         all_days = []
@@ -105,7 +105,7 @@ class TrackOrders:
         days_statistics = all_unique_days.most_common()
         # o [-1] é o ultimo da lista
         return days_statistics[-1][0]
-    
+
 
 # Teste automatizado
 # python3 -m pytest tests/test_track_orders.py
