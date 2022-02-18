@@ -4,7 +4,6 @@ class InventoryControl:
         'pizza': ['massa', 'queijo', 'molho'],
         'misto-quente': ['pao', 'queijo', 'presunto'],
         'coxinha': ['massa', 'frango'],
-        'pizza': ['massa', 'queijo', 'molho'],
     }
     MINIMUM_INVENTORY = {
         'pao': 50,
